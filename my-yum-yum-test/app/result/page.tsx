@@ -163,7 +163,7 @@ export default function ResultPage() {
           <div className="text-center space-y-5 pt-2">
             <div className="space-y-1">
               <h3 className="text-xl font-black text-slate-800 tracking-tight">
-                제작자의 작은 부탁
+                1/3제작자의 작은 부탁
               </h3>
               <p className="text-[13px] text-slate-500 font-medium">
                 더 나은 분석을 위해 데이터와 사투 중입니다..!
