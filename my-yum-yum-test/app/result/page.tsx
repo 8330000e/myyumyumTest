@@ -3,6 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import KakaoShare from "@/components/KakaoShare";
+import { useEffect, useRef } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 const RESULTS = {
   fuel: {
@@ -55,6 +57,24 @@ export default function ResultPage() {
   const searchParams = useSearchParams();
   const type = (searchParams.get("type") as keyof typeof RESULTS) || "fog";
   const data = RESULTS[type];
+  const hasSaved = useRef(false);
+
+  useEffect(() => {
+    const saveData = async () => {
+      if (hasSaved.current) return;
+
+      const { error } = await supabase
+        .from('test_results')
+        .insert([{ result_type: type }]);
+
+      if (!error) {
+        console.log("✅ 저장 성공!");
+        hasSaved.current = true; // 4. 저장 성공 후 깃발 올리기
+      }
+    };
+
+    saveData();
+  }, [type]);
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-6 pb-24">
