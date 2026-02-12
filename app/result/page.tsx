@@ -2,8 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import KakaoShare from "@/components/KakaoShare";
 import { useEffect, useRef } from "react";
+import KakaoShare from "@/components/KakaoShare";
 import { supabase } from "@/lib/supabaseClient";
 
 const RESULTS = {
