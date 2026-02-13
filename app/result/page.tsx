@@ -12,6 +12,12 @@ export default function ResultPage({ searchParams }: { searchParams: { psy: stri
   const beh = searchParams.beh || "CLOCK";
   const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
 
+  useEffect(() => {
+    if (finalResult.name) {
+      document.title = `${finalResult.name} - 식습관 동물 테스트 결과`;
+    }
+  }, [finalResult.name]);
+
   const isSaved = useRef(false);
 
   useEffect(() => {

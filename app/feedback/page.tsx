@@ -16,6 +16,16 @@ export default function FeedbackPage() {
     const [step, setStep] = useState(1); // 이제 step 1은 기본 정보부터 시작
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        if (step<5) {
+            document.title = `식습관 설문조사 - step ${step}`;
+        }else if(step>4){
+            document.title = `식습관 설문조사 - step 5`;
+        }else{
+            document.title = `식습관 설문조사 완료`;
+        }
+    }, [step]);
+
     const [formData, setFormData] = useState({
         animal_result: `${psychologyType} (${behaviorPattern})`, // 자동으로 미리 입력됨!
         gender: "",
@@ -57,7 +67,7 @@ export default function FeedbackPage() {
                             <div className="space-y-4">
                                 <label className="block text-sm font-bold text-slate-500 ml-1">성별</label>
                                 <div className="flex gap-3 whitespace-pre-wrap">
-                                    {["생물학적\n남성", "생물학적\n여성","응답하고\n싶지 않음"].map(g => (
+                                    {["생물학적\n남성", "생물학적\n여성", "응답하고\n싶지 않음"].map(g => (
                                         <button key={g} type="button" onClick={() => setFormData({ ...formData, gender: g })}
                                             className={`flex-1 py-4 rounded-2xl font-bold transition-all ${formData.gender === g ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}>{g}</button>
                                     ))}
@@ -76,7 +86,7 @@ export default function FeedbackPage() {
                             <div className="space-y-4">
                                 <label className="block text-sm font-bold text-slate-500 ml-1">성별</label>
                                 <div className="flex gap-3 whitespace-pre-wrap">
-                                    {["생물학적\n남성", "생물학적 여성","응답하고 싶지 않음"].map(g => (
+                                    {["생물학적\n남성", "생물학적 여성", "응답하고 싶지 않음"].map(g => (
                                         <button key={g} type="button" onClick={() => setFormData({ ...formData, gender: g })}
                                             className={`flex-1 py-4 rounded-2xl font-bold transition-all ${formData.gender === g ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}>{g}</button>
                                     ))}
@@ -93,7 +103,7 @@ export default function FeedbackPage() {
                         {step > 1 && (
                             <button onClick={() => setStep(step - 1)} className="flex-1 py-5 bg-slate-100 text-slate-500 rounded-2xl font-black">이전</button>
                         )}
-                        {step < 12 ? (
+                        {step < 13 ? (
                             <button onClick={() => setStep(step + 1)} className="flex-[2] py-5 bg-slate-900 text-white rounded-2xl font-black shadow-xl">다음 단계로</button>
                         ) : (
                             <button onClick={handleSubmit} disabled={loading} className="flex-[2] py-5 bg-emerald-500 text-white rounded-2xl font-black shadow-xl">

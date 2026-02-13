@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
 import { QUESTIONS } from "@/data/questions";
 import { calculateResult } from "@/utils/calculate"; // 이전에 만든 계산 함수
 
 export default function TestPage() {
+  document.title = "테스트 진행 중... | 식습관 동물 테스트";
   const [step, setStep] = useState(0);
   // 점수(scores) 대신 선택한 답변의 인덱스를 숫자로 저장합니다.
   const [answers, setAnswers] = useState<number[]>([]);
