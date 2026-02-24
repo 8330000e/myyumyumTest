@@ -155,7 +155,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     FUNCTIONAL: {
         CLOCK: {
-            name: "일중독 일개미",
+            name: "설계왕 비버",
             psychologyType: "Functional Eating",
             behaviorPattern: "Rhythmic Pattern",
             mainColor: "#60A5FA",
@@ -194,7 +194,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
             stats: { emotionalControl: 80, regularity: 35, bodyAwareness: 45, efficiency: 85, mindfulness: 60 }
         },
         SMALL: {
-            name: "이슬 먹는 나비",
+            name: "단아한 학",
             psychologyType: "Functional Eating",
             behaviorPattern: "Restrictive Intake",
             mainColor: "#94A3B8",
@@ -207,7 +207,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
             stats: { emotionalControl: 85, regularity: 55, bodyAwareness: 50, efficiency: 90, mindfulness: 65 }
         },
         CONSTANT: {
-            name: "바쁜 꿀벌",
+            name: "부지런한 토끼",
             psychologyType: "Functional Eating",
             behaviorPattern: "Grazing Pattern",
             mainColor: "#FACC15",
