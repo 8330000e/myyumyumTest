@@ -37,7 +37,7 @@ export default function FeedbackPage() {
     taste_sensitivity_other: "",
     main_focus: [] as string[],
     main_focus_other: "",
-    favorite_foods: "",
+    favorite_foods: [""],
     menu_choice_factor: "",
     morning_menu1: "",
     lunch_menu1: "",
@@ -120,27 +120,6 @@ export default function FeedbackPage() {
     });
   };
 
-  const toggleFavorite = (f: string) => {
-    setFormData((prev) => {
-      // 이미 배열에 들어있는지 확인
-      const isSelected = prev.favorite_foods.includes(f);
-
-      if (isSelected) {
-        // 이미 있다면 제거 (해제)
-        return {
-          ...prev,
-          favorite_foods: prev.favorite_foods.filter((item) => item !== f),
-        };
-      } else {
-        // 없다면 추가 (최대 2개만 하고 싶다면 여기에 length 체크를 넣으세요!)
-        return {
-          ...prev,
-          favorite_foods: [...prev.favorite_foods, f],
-        };
-      }
-    });
-  };
-
   const handleSubmit = async () => {
     setLoading(true);
     const { error } = await supabase.from("feedback").insert([formData]);
@@ -150,6 +129,30 @@ export default function FeedbackPage() {
       router.push("/");
     }
     setLoading(false);
+  };
+
+  // 1. 음식 입력 내용 수정하기
+  const handleFoodChange = (index: number, value: string) => {
+    const newFoods = [...formData.favorite_foods];
+    newFoods[index] = value;
+    setFormData({ ...formData, favorite_foods: newFoods }); // 변수명 확인!
+  };
+
+  // 2. 입력창 하나 더 추가하기
+  const addFoodField = () => {
+    setFormData({
+      ...formData,
+      favorite_foods: [...formData.favorite_foods, ""],
+    });
+  };
+
+  // 3. 특정 입력창 삭제하기
+  const removeFoodField = (index: number) => {
+    // 최소 하나는 남겨두고 싶다면 체크
+    if (formData.favorite_foods.length <= 1) return;
+
+    const newFoods = formData.favorite_foods.filter((_, i) => i !== index);
+    setFormData({ ...formData, favorite_foods: newFoods });
   };
 
   return (
@@ -876,21 +879,44 @@ export default function FeedbackPage() {
 
           {step === 14 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
-                5. 좋아하는 음식들 🍔
-              </h2>
-              <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-500 ml-1">
-                  좋아하는 메뉴들을 적어보아요!
+              <label className="block font-bold text-slate-700 mb-2">
+                <h2 className="text-xl font-black text-slate-900">
+                  5. 좋아하는 음식 리스트 🍔
+                </h2>
+                <label className="block py-4 text-base font-semibold text-slate-500 ml-1">
+                  좋아하는 음식들을 추가해주세요!
                 </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, favorite_foods: e.target.value })
-                  }
-                />
-              </div>
+              </label>
+
+              {formData.favorite_foods.map((food, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value={food}
+                    onChange={(e) => handleFoodChange(index, e.target.value)}
+                    placeholder={`음식 입력 (${index + 1})`}
+                    className="flex-1 py-4 px-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+                  />
+
+                  {/* 삭제 버튼: 항목이 2개 이상일 때만 보여주거나 항상 보여줌 */}
+                  <button
+                    type="button"
+                    onClick={() => removeFoodField(index)}
+                    className="p-3 text-slate-400 hover:text-red-500 transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+
+              {/* 추가 버튼 */}
+              <button
+                type="button"
+                onClick={addFoodField}
+                className="w-full py-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 font-bold hover:bg-slate-50 hover:border-slate-300 transition-all mt-2"
+              >
+                + 음식 추가하기
+              </button>
             </div>
           )}
 

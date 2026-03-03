@@ -3,30 +3,60 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Metadata } from "next";
+import { supabase } from "@/lib/supabaseClient";
+import { RESULTS } from "@/data/results";
 import { QUESTIONS } from "@/data/questions";
 import { calculateResult } from "@/utils/calculate"; // 이전에 만든 계산 함수
 
 export default function TestPage() {
-  document.title = "테스트 진행 중... | 식습관 동물 테스트";
+  // 1. Hook들은 무조건 여기 최상단에 모아두어야 합니다!
   const [step, setStep] = useState(0);
-  // 점수(scores) 대신 선택한 답변의 인덱스를 숫자로 저장합니다.
   const [answers, setAnswers] = useState<number[]>([]);
+  const [loading, setLoading] = useState(false); // 로딩 상태를 여기로 이동
   const router = useRouter();
 
-  const handleAnswer = (answerIndex: number) => {
-    // 1. 현재 선택한 답변 번호를 배열에 추가
+  // 브라우저 타이틀 설정은 useEffect 안에서 하는 게 정석입니다.
+  useEffect(() => {
+    document.title = "테스트 진행 중... | 식습관 동물 테스트";
+  }, []);
+
+  const handleAnswer = async (answerIndex: number) => {
+    // async 추가
     const newAnswers = [...answers, answerIndex];
     setAnswers(newAnswers);
 
-    // 2. 다음 질문으로 이동하거나 결과 페이지로 이동
     if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
     } else {
-      // 모든 질문이 끝났을 때 계산 함수 실행
+      if (loading) return;
+      setLoading(true);
+
+      // 1. 결과 데이터 가져오기 (psy: 심리유형, beh: 행동유형)
       const { psy, beh } = calculateResult(newAnswers);
-      // 결과 페이지로 psy와 beh 값을 쿼리로 전달
-      router.push(`/result?psy=${psy}&beh=${beh}`);
+
+      // 2. 동물 이름 결정하기 (예시: 'psy-beh' 조합으로 동물 이름을 찾는 로직)
+      // 만약 별도의 결과 매핑 객체가 있다면 그것을 사용하세요.
+      // 예: const animalName = ANIMAL_DATA[psy][beh].name;
+      const animalTitle = RESULTS[psy][beh].name; // 일단 유형 코드로 저장하거나, 실제 이름을 넣으세요!
+
+      // 3. Supabase에 저장
+      const { error } = await supabase.from("test_results").insert([
+        {
+          created_at: new Date(),
+          result: animalTitle,
+          psy_type: psy,
+          beh_type: beh,
+          answers: newAnswers, // 👈 새로 추가한 컬럼에 데이터 넣기!
+        },
+      ]);
+
+      if (!error) {
+        router.push(`/result?psy=${psy}&beh=${beh}`);
+      } else {
+        // 에러 상세 내용을 알림창에 띄워보세요!
+        alert(`저장 실패: ${error.message}`);
+        setLoading(false);
+      }
     }
   };
 
@@ -44,7 +74,7 @@ export default function TestPage() {
           <span className="text-slate-400 text-xs">식습관 분석 중...</span>
         </div>
         <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-emerald-500 transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
@@ -54,7 +84,9 @@ export default function TestPage() {
       {/* 질문 카드 */}
       <div className="max-w-md mx-auto w-full flex-grow flex flex-col justify-center">
         {/* sub 텍스트 추가 */}
-        <p className="text-emerald-500 font-bold text-sm mb-2">{currentQuestion.sub}</p>
+        <p className="text-emerald-500 font-bold text-sm mb-2">
+          {currentQuestion.sub}
+        </p>
         <h2 className="text-[26px] font-black text-slate-900 mb-10 leading-tight break-keep">
           {currentQuestion.question}
         </h2>
