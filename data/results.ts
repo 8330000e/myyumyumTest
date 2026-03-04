@@ -280,7 +280,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       psychologyType: "Functional Eating",
       behaviorPattern: "Nocturnal Hyperphagia",
       mainColor: "#1E293B",
-      textColor: "#FFFFFF",
+      textColor: "#1E293B",
       lightColor: "#F1F5F9",
       description: "밤샘 효율을 위해 야식을 연료처럼 쏟아붓는 프로 일꾼!",
       advice: "밤에 쓴 에너지는 낮에 잠으로 보충되지 않아요. 건강이 우선!",

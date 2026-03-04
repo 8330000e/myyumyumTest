@@ -3,13 +3,13 @@
 import { useState, useEffect, Activity } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // useSearchParams 추가
 import { supabase } from "@/lib/supabaseClient";
+import { RESULTS } from "@/data/results";
 
 export default function FeedbackPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   // URL에서 동물 이름과 유형을 가져옵니다.
-  const animalName = searchParams.get("animal") || "알 수 없음";
   const psychologyType = searchParams.get("psy") || "알 수 없음";
   const behaviorPattern = searchParams.get("beh") || "알 수 없음";
 
@@ -28,6 +28,8 @@ export default function FeedbackPage() {
 
   const [formData, setFormData] = useState({
     animal_result: `${psychologyType} (${behaviorPattern})`, // 자동으로 미리 입력됨!
+    psychologyType: `${psychologyType}`,
+    behaviorPattern: `${behaviorPattern}`,
     gender: "",
     age: "",
     activity: "",
@@ -39,41 +41,15 @@ export default function FeedbackPage() {
     main_focus_other: "",
     favorite_foods: [""],
     menu_choice_factor: "",
-    morning_menu1: "",
-    lunch_menu1: "",
-    dinner_menu1: "",
-    late_night_menu1: "",
-    snack_menu1: "",
-    morning_menu2: "",
-    lunch_menu2: "",
-    dinner_menu2: "",
-    late_night_menu2: "",
-    snack_menu2: "",
-    morning_menu3: "",
-    lunch_menu3: "",
-    dinner_menu3: "",
-    late_night_menu3: "",
-    snack_menu3: "",
-    morning_menu4: "",
-    lunch_menu4: "",
-    dinner_menu4: "",
-    late_night_menu4: "",
-    snack_menu4: "",
-    morning_menu5: "",
-    lunch_menu5: "",
-    dinner_menu5: "",
-    late_night_menu5: "",
-    snack_menu5: "",
-    morning_menu6: "",
-    lunch_menu6: "",
-    dinner_menu6: "",
-    late_night_menu6: "",
-    snack_menu6: "",
-    morning_menu7: "",
-    lunch_menu7: "",
-    dinner_menu7: "",
-    late_night_menu7: "",
-    snack_menu7: "",
+    weekly_diet: {
+      mon: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      tue: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      wed: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      thu: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      fri: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      sat: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+      sun: { morning: "", lunch: "", dinner: "", late_night: "", snack: "" },
+    } as Record<string, Record<string, string>>,
   });
 
   const toggleFocus = (m: string) => {
@@ -120,39 +96,88 @@ export default function FeedbackPage() {
     });
   };
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    const { error } = await supabase.from("feedback").insert([formData]);
-    if (error) alert("저장 실패. 다시 시도해주세요!");
-    else {
-      alert("소중한 데이터 감사합니다!");
-      router.push("/");
-    }
-    setLoading(false);
+  const handleDietChange = (day: string, meal: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      weekly_diet: {
+        ...prev.weekly_diet,
+        [day]: {
+          ...prev.weekly_diet[day],
+          [meal]: value,
+        },
+      },
+    }));
   };
 
-  // 1. 음식 입력 내용 수정하기
+  // 즐겨 먹는 음식 입력 칸을 추가하는 함수
+  const addFoodField = () => {
+    setFormData((prev) => ({
+      ...prev,
+      favorite_foods: [...prev.favorite_foods, ""], // 빈 입력칸 하나 추가
+    }));
+  };
+
+  // 즐겨 먹는 음식 값을 변경하는 함수 (혹시 이것도 없다면 추가하세요)
   const handleFoodChange = (index: number, value: string) => {
     const newFoods = [...formData.favorite_foods];
     newFoods[index] = value;
-    setFormData({ ...formData, favorite_foods: newFoods }); // 변수명 확인!
+    setFormData((prev) => ({
+      ...prev,
+      favorite_foods: newFoods,
+    }));
   };
 
-  // 2. 입력창 하나 더 추가하기
-  const addFoodField = () => {
-    setFormData({
-      ...formData,
-      favorite_foods: [...formData.favorite_foods, ""],
-    });
-  };
-
-  // 3. 특정 입력창 삭제하기
+  // 특정 인덱스의 음식 입력 칸을 삭제하는 함수
   const removeFoodField = (index: number) => {
-    // 최소 하나는 남겨두고 싶다면 체크
+    // 입력 칸이 하나만 남았을 때는 삭제하지 않도록 방어 로직 추가
     if (formData.favorite_foods.length <= 1) return;
 
-    const newFoods = formData.favorite_foods.filter((_, i) => i !== index);
-    setFormData({ ...formData, favorite_foods: newFoods });
+    setFormData((prev) => ({
+      ...prev,
+      favorite_foods: prev.favorite_foods.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    const submitData = {
+      // 1. 사용자용 명칭 (예: "바른생활 판다")
+      animal_result: `${psychologyType} ${behaviorPattern}`,
+
+      // 2. 내부 분석용 영문 코드 (예: "INTUITIVE")
+      // URL 파라미터나 상태값으로 들고 있는 영문 변수명을 그대로 할당하세요.
+      psychology_type: psychologyType, // 예: 'INTUITIVE'
+
+      // 3. 내부 분석용 영문 코드 (예: "CLOCK")
+      behavior_pattern: behaviorPattern, // 예: 'CLOCK'
+
+      gender: formData.gender,
+      age: formData.age,
+      activity: formData.activity,
+      intake_level: formData.intake_level,
+      meal_regularity: formData.meal_regularity,
+      taste_sensitivity: formData.taste_sensitivity,
+      taste_sensitivity_other: formData.taste_sensitivity_other,
+      main_focus: formData.main_focus,
+      main_focus_other: formData.main_focus_other,
+      favorite_foods: formData.favorite_foods.filter((f) => f.trim() !== ""),
+      menu_choice_factor: formData.menu_choice_factor,
+
+      // 주간 식단 객체 (mon, tue... 구조)
+      weekly_diet: formData.weekly_diet,
+    };
+
+    const { error } = await supabase.from("feedback").insert([submitData]);
+
+    if (error) {
+      console.error("저장 실패:", error.message);
+      alert("저장 실패. 다시 시도해주세요!");
+    } else {
+      alert("데이터가 안전하게 저장되었습니다!");
+      router.push("/complete");
+    }
+    setLoading(false);
   };
 
   return (
@@ -424,59 +449,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   월요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu1: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu1: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu1: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu1: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu1: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.mon[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("mon", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -486,63 +479,32 @@ export default function FeedbackPage() {
               <h2 className="text-xl font-black text-slate-900">
                 4-2. 일주일 동안 먹은 음식들 🍔
               </h2>
+
               <div className="space-y-4">
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   화요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu2: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu2: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu2: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu2: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu2: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.tue[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("tue", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -556,59 +518,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   수요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu3: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu3: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu3: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu3: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu3: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.wed[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("wed", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -622,59 +552,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   목요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu4: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu4: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu4: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu4: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu4: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.thu[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("thu", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -688,59 +586,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   금요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu5: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu5: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu5: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu5: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu5: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.fri[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("fri", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -754,59 +620,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   토요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu6: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu6: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu6: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu6: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu6: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.sat[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("sat", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -820,59 +654,27 @@ export default function FeedbackPage() {
                 <label className="block text-base font-bold text-slate-800 ml-1">
                   일요일
                 </label>
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  아침
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, morning_menu7: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  점심
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, lunch_menu7: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  저녁
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, dinner_menu7: e.target.value })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  야식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      late_night_menu7: e.target.value,
-                    })
-                  }
-                />
-                <label className="block text-sm font-bold text-slate-500 ml-1 mt-4 mb-1">
-                  간식
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snack_menu7: e.target.value })
-                  }
-                />
+                {[
+                  { id: "morning", label: "아침" },
+                  { id: "lunch", label: "점심" },
+                  { id: "dinner", label: "저녁" },
+                  { id: "late_night", label: "야식" },
+                  { id: "snack", label: "간식" },
+                ].map((meal) => (
+                  <div key={meal.id}>
+                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                      {meal.label}
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-4 bg-slate-50 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500"
+                      value={formData.weekly_diet.sun[meal.id]}
+                      onChange={(e) =>
+                        handleDietChange("sun", meal.id, e.target.value)
+                      }
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
