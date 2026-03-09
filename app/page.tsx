@@ -27,11 +27,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center px-6 py-12">
-      {/* 상단 꾸미기 요소 */}
-      <div className="mb-8 animate-bounce">
-        <span className="text-7xl">🍱</span>
-      </div>
-
       {/* 메인 타이틀 영역 */}
       <div className="text-center space-y-4 mb-12">
         <div className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold tracking-widest uppercase mb-2">
@@ -42,11 +37,17 @@ export default function Home() {
           <br />
           <span className="text-emerald-500">동물 유형</span> 테스트
         </h1>
+
         <p className="text-slate-500 font-medium leading-relaxed break-keep max-w-[280px] mx-auto">
           무의식적인 식사 습관 속에 숨겨진
           <br />
           당신의 진짜 모습을 찾아보세요.
         </p>
+        <img
+          src="/img/cover.png"
+          alt="Description"
+          className="w-full max-w-xs mx-auto animate-slide-x animate-swing"
+        />
       </div>
 
       {/* 카드 프리뷰 영역 (재미 요소) */}
@@ -98,7 +99,7 @@ export default function Home() {
       </div>
 
       {/* 하단 푸터 느낌 */}
-      <footer className="mt-20 text-center">
+      <footer className="mt-15 text-center">
         <p className="text-slate-300 text-[11px] font-bold tracking-widest uppercase">
           Developed by jeminai with ㄱㅏ
         </p>
