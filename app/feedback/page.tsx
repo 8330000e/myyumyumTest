@@ -355,7 +355,7 @@ export default function FeedbackPage() {
                         : "text-slate-800"
                     }`}
                   >
-                    나이 <span className="text-red-500">*</span>
+                    만 나이 <span className="text-red-500">*</span>
                   </label>
                   {errorField === "연령대" && (
                     <span className="text-xs text-red-500 font-bold animate-bounce">

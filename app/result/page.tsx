@@ -61,19 +61,19 @@ export default function ResultPage({
           >
             {finalResult.psychologyType} & {finalResult.behaviorPattern}
           </h2>
-          <h1 className="text-3xl font-black text-slate-900 mb-6">
+          <h1 className="text-4xl font-black text-slate-900 mb-6">
             {finalResult.name}
           </h1>
-          <p className="text-slate-600 leading-relaxed break-keep">
+          <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
           </p>
         </section>
 
         {/* 능력치 분석 */}
         <section className="bg-white rounded-3xl p-7 shadow-sm border border-slate-100">
-          <h3 className="text-slate-900 font-bold mb-8 flex items-center justify-between">
+          <h3 className="text-xl text-slate-900 font-bold mb-8 flex items-center justify-between">
             <span>📊 식습관 능력치 지표</span>
-            <span className="text-[10px] text-slate-400 font-normal">
+            <span className="text-[16px] text-slate-400 font-normal">
               문항 분석 결과
             </span>
           </h3>
@@ -90,7 +90,7 @@ export default function ResultPage({
               return (
                 <div key={key} className="relative">
                   <div className="flex justify-between items-end mb-2">
-                    <span className="text-sm font-bold text-slate-600">
+                    <span className="text-xl font-bold text-slate-600">
                       {labels[key] || key}
                     </span>
                     <span

@@ -66,12 +66,14 @@ export default function TestPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col px-6 py-12">
       {/* 상단 프로그레스 바 */}
-      <div className="max-w-md mx-auto w-full mb-12">
+      <div className="max-w-md mx-auto w-full">
         <div className="flex justify-between items-end mb-3 font-black">
           <span className="text-emerald-600 text-2xl">
             {step + 1} <span className="text-slate-200 text-lg">/ 12</span>
           </span>
-          <span className="text-slate-400 text-xs">식습관 분석 중...</span>
+          <span className="text-slate-400 text-small font-light mb-[-5px]">
+            식습관 분석 중...
+          </span>
         </div>
         <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
           <div
@@ -82,12 +84,12 @@ export default function TestPage() {
       </div>
 
       {/* 질문 카드 */}
-      <div className="max-w-md mx-auto w-full flex-grow flex flex-col justify-center">
+      <div className="max-w-md mx-auto w-full mt-10 flex flex-col justify-center">
         {/* sub 텍스트 추가 */}
-        <p className="text-emerald-500 font-bold text-sm mb-2">
+        <p className="text-emerald-500 font-bold text-small mb-2">
           {currentQuestion.sub}
         </p>
-        <h2 className="text-[26px] font-black text-slate-900 mb-10 leading-tight break-keep">
+        <h2 className="text-[30px] font-black text-slate-900 mb-10 leading-tight break-keep">
           {currentQuestion.question}
         </h2>
 
@@ -97,7 +99,7 @@ export default function TestPage() {
             <button
               key={idx}
               onClick={() => handleAnswer(idx)} // 몇 번째 버튼인지 idx를 넘김
-              className="w-full p-5 text-left bg-white border-2 border-slate-100 rounded-2xl text-slate-700 font-bold text-lg hover:border-emerald-500 hover:bg-emerald-50 transition-all active:scale-[0.97] shadow-sm shadow-slate-100"
+              className="w-full p-5 text-left bg-white border-2 border-slate-100 rounded-2xl text-slate-700 font-medium text-2xl hover:border-emerald-500 hover:bg-emerald-50 transition-all active:scale-[0.97] shadow-sm shadow-slate-100"
             >
               {answerText}
             </button>
