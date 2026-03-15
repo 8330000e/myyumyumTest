@@ -26,9 +26,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center px-6 py-10">
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center px-6 py-20">
       {/* 메인 타이틀 영역 */}
-      <div className="text-center space-y-2 mb-5">
+      <div className="text-center mb-5">
         <div className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-small font-bold tracking-widest uppercase mb-2">
           Psychology & PATTERN
         </div>
@@ -46,7 +46,7 @@ export default function Home() {
         <img
           src="/img/cover.png"
           alt="Description"
-          className="w-full max-w-xs mx-auto animate-bounce mt-[-10px]"
+          className="w-full max-w-xs mx-auto animate-bounce mb-[-10px]"
         />
       </div>
 
@@ -66,7 +66,7 @@ export default function Home() {
       </div> */}
 
       {/* 🚀 메인 액션 버튼 */}
-      <div className=" max-w-sm mx-auto space-y-2">
+      <div className=" max-w-sm mx-auto space-y-4">
         <Link
           href="/test"
           className="group relative flex items-center justify-center w-80 py-5 bg-slate-900 text-white rounded-[2.5rem] text-2xl font-black transition-all hover:bg-emerald-600 active:scale-95 shadow-xl shadow-slate-200"
