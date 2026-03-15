@@ -16,7 +16,7 @@ export default function KakaoShare({ type }: { type: string }) {
     const checkKakao = setInterval(() => {
       if (typeof window !== "undefined" && window.Kakao) {
         if (!window.Kakao.isInitialized()) {
-          window.Kakao.init("cadc1ccc67e7bb8280561b47a515f4c3"); // 👈 본인 JS 키 넣기!
+          window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
         }
         setIsLoaded(true);
         clearInterval(checkKakao);

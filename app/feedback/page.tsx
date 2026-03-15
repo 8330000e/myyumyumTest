@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, Activity } from "react";
+import { useState, useEffect, Activity, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // useSearchParams 추가
 import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
 
-export default function FeedbackPage() {
+function FeedbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -965,5 +965,16 @@ export default function FeedbackPage() {
         </div>
       </div>
     </div>
+  );
+}
+export default function FeedbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-xl font-bold text-slate-500 animate-pulse">로딩 중...</p>
+      </div>
+    }>
+      <FeedbackContent />
+    </Suspense>
   );
 }
