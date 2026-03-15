@@ -3,13 +3,13 @@ import Script from "next/script";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "입맛저격! 뭐먹지?",
+  title: "내 식습관 유형은?",
   description: "나의 식습관 동물 유형 테스트",
   openGraph: {
-    title: "입맛저격! 뭐먹지?",
+    title: "내 식습관 유형은?",
     description: "내 식습관은 어떤 동물 유형일까? 지금 테스트해보세요!",
     url: "https://myyumyum-test.vercel.app/", // 실제 배포 주소
-    siteName: "입맛저격",
+    siteName: "내 식습관 유형",
     images: [
       {
         url: "/images/share-image.png", // public/images/main-thumbnail.jpg 경로에 이미지가 있어야 함
@@ -19,6 +19,13 @@ export const metadata: Metadata = {
     ],
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image", // 큰 이미지가 있는 카드 형태
+    title: "내 식습관 유형은?",
+    description: "내 식습관은 어떤 동물 유형일까? 지금 테스트해보세요!",
+    images: ["/images/share-image.png"], // 트위터용 썸네일
+    // creator: '@my_twitter_id', // 본인의 트위터 아이디가 있다면 추가
   },
 };
 
