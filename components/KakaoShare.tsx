@@ -59,7 +59,7 @@ export default function KakaoShare({ type }: { type: string }) {
   return (
     <button 
       onClick={shareToKakao}
-      className={`flex items-center justify-center gap-2 py-5 rounded-[2rem] font-bold text-lg shadow-md transition-all active:scale-95 w-full ${
+      className={`flex items-center justify-center gap-2 py-5 rounded-[2rem] font-bold text-xl shadow-md transition-all active:scale-95 w-full ${
         isLoaded 
           ? "bg-[#FEE500] text-[#3c1e1e] cursor-pointer" // ✅ 여기에 cursor-pointer 추가!
           : "bg-slate-200 text-slate-400 cursor-not-allowed" // 로딩 중엔 금지 아이콘

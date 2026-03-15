@@ -105,24 +105,27 @@ export default function FeedbackPage() {
 
     // 3-2: 주로 선호하는 음식 종류
     if (step === 5) {
-      if (
-        !formData.taste_sensitivity ||
-        formData.taste_sensitivity.length === 0
-      ) {
-        setErrorField("선호하는 음식");
-        alert("최소 하나 이상의 항목을 선택해주세요!");
-        return; // 다음으로 안 넘어가게 차단
-      }
+    const hasTaste = formData.taste_sensitivity && formData.taste_sensitivity.length > 0;
+    const hasOtherTaste = formData.taste_sensitivity_other.trim() !== "";
+
+    if (!hasTaste && !hasOtherTaste) { // 둘 다 없을 때만 차단
+      setErrorField("선호하는 음식");
+      alert("항목을 선택하거나 기타 의견을 입력해주세요!");
+      return;
     }
+  }
 
     // 3-3: 메뉴 결정 시 가장 큰 영향을 주는 요인
     if (step === 6) {
-      if (!formData.main_focus || formData.main_focus.length === 0) {
-        setErrorField("메뉴 결정 요인");
-        alert("최소 하나 이상의 항목을 선택해주세요!");
-        return;
-      }
+    const hasFocus = formData.main_focus && formData.main_focus.length > 0;
+    const hasOtherFocus = formData.main_focus_other.trim() !== "";
+
+    if (!hasFocus && !hasOtherFocus) { // 둘 다 없을 때만 차단
+      setErrorField("메뉴 결정 요인");
+      alert("항목을 선택하거나 기타 의견을 입력해주세요!");
+      return;
     }
+  }
 
     // 4
 
@@ -290,7 +293,7 @@ export default function FeedbackPage() {
             <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {/* 타이틀 섹션 */}
               <div className="space-y-2">
-                <h2 className="text-xl font-black text-slate-900">
+                <h2 className="text-2xl font-black text-slate-900">
                   1. 당신에 대해 알려주세요 👤
                 </h2>
                 <p className="text-slate-500 font-medium text-sm">
@@ -302,14 +305,14 @@ export default function FeedbackPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <label
-                    className={`text-base font-bold ml-1 transition-colors ${
+                    className={`text-xl font-bold ml-1 transition-colors ${
                       errorField === "성별" ? "text-red-500" : "text-slate-800"
                     }`}
                   >
                     성별 <span className="text-red-500">*</span>
                   </label>
                   {errorField === "성별" && (
-                    <span className="text-xs text-red-500 font-bold animate-bounce">
+                    <span className="text-small text-red-500 font-bold animate-bounce">
                       필수 선택!
                     </span>
                   )}
@@ -331,7 +334,7 @@ export default function FeedbackPage() {
                         setFormData({ ...formData, gender: item.value });
                         setErrorField(null); // 선택 시 에러 해제
                       }}
-                      className={`p-3 py-5 rounded-[1.5rem] font-bold text-base whitespace-pre-line leading-tight border-2 transition-all ${
+                      className={`p-3 py-5 rounded-[1.5rem] font-bold text-lg whitespace-pre-line leading-tight border-2 transition-all ${
                         formData.gender === item.value
                           ? "border-none bg-emerald-400 text-white shadow-sm scale-[1.02]"
                           : errorField === "성별"
@@ -349,16 +352,16 @@ export default function FeedbackPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <label
-                    className={`text-base font-bold ml-1 transition-colors ${
+                    className={`text-xl font-bold ml-1 transition-colors ${
                       errorField === "연령대"
                         ? "text-red-500"
                         : "text-slate-800"
                     }`}
                   >
-                    만 나이 <span className="text-red-500">*</span>
+                    만 나이 <span className="text-red-500 text-xl">*</span>
                   </label>
                   {errorField === "연령대" && (
-                    <span className="text-xs text-red-500 font-bold animate-bounce">
+                    <span className="text-small text-red-500 font-bold animate-bounce">
                       나이를 입력해 주세요!
                     </span>
                   )}
@@ -373,7 +376,7 @@ export default function FeedbackPage() {
                       setFormData({ ...formData, age: e.target.value });
                       if (e.target.value) setErrorField(null);
                     }}
-                    className={`w-full p-5 rounded-[2rem] font-bold text-lg outline-none border-2 transition-all ${
+                    className={`w-full pl-8 p-5 rounded-[2rem] font-bold text-lg outline-none border-2 transition-all ${
                       errorField === "연령대" && !formData.age
                         ? "border-red-300 bg-red-50 animate-pulse"
                         : "border-transparent bg-slate-50 focus:border-emerald-500 focus:bg-white text-slate-900 shadow-inner"
@@ -390,11 +393,11 @@ export default function FeedbackPage() {
           {/* ... 이후 Step 2, 3, 4 동일하게 진행 ... */}
           {step === 2 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 2-1. 평소에 얼만큼 움직이시나요? 🏃‍♀️
               </h2>
               <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-800 ml-1">
+                <label className="block text-xl font-bold text-slate-800 ml-1">
                   평소 활동량 <span className="text-red-500">*</span>
                 </label>
                 <div className="flex flex-col gap-3 whitespace-pre-wrap">
@@ -408,7 +411,7 @@ export default function FeedbackPage() {
                       key={a}
                       type="button"
                       onClick={() => setFormData({ ...formData, activity: a })}
-                      className={`flex-1 text-left py-4 px-4 rounded-full font-bold transition-all ${formData.activity === a ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
+                      className={`flex-1 text-lg text-left pl-6 py-4 px-4 rounded-full font-bold transition-all ${formData.activity === a ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
                     >
                       {a}
                     </button>
@@ -420,11 +423,11 @@ export default function FeedbackPage() {
 
           {step === 3 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 2-2. 평소에 얼만큼 움직이시나요? 🏃‍♀️
               </h2>
               <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-800 ml-1 mt-4">
+                <label className="block text-xl font-bold text-slate-800 ml-1 mt-4">
                   하루 평균 섭취량에 대한 자가평가{" "}
                   <span className="text-red-500">*</span>
                 </label>
@@ -440,7 +443,7 @@ export default function FeedbackPage() {
                       onClick={() =>
                         setFormData({ ...formData, intake_level: i })
                       }
-                      className={`flex-1 text-left py-4 px-4 rounded-full font-bold transition-all ${formData.intake_level === i ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
+                      className={`flex-1 text-lg text-left pl-6 py-4 px-4 rounded-full font-bold transition-all ${formData.intake_level === i ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
                     >
                       {i}
                     </button>
@@ -452,11 +455,11 @@ export default function FeedbackPage() {
 
           {step === 4 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 3-1. 당신과 음식의 관계 🍚
               </h2>
               <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-800 ml-1 mt-4">
+                <label className="block text-xl font-bold text-slate-800 ml-1 mt-4">
                   가장 자주 거르는 끼니 <span className="text-red-500">*</span>
                 </label>
                 <div className="flex flex-col gap-3 whitespace-pre-wrap">
@@ -468,7 +471,7 @@ export default function FeedbackPage() {
                         onClick={() =>
                           setFormData({ ...formData, meal_regularity: m })
                         }
-                        className={`flex-1 text-left py-4 px-4 rounded-full font-bold transition-all ${formData.meal_regularity === m ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
+                        className={`flex-1 text-lg text-left pl-6 py-4 px-4 rounded-full font-bold transition-all ${formData.meal_regularity === m ? "bg-emerald-500 text-white shadow-md shadow-emerald-100" : "bg-slate-50 text-slate-500"}`}
                       >
                         {m}
                       </button>
@@ -481,15 +484,15 @@ export default function FeedbackPage() {
 
           {step === 5 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 3-2. 당신과 음식의 관계 🍚
               </h2>
               <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-800 ml-1 mt-4">
+                <label className="block text-xl font-bold text-slate-800 ml-1 mt-4">
                   주로 선호하는 음식 종류{" "}
                   <span className="text-red-500">*</span>
                 </label>
-                <div className="block text-sm font-bold text-slate-500 ml-1 mt-4">
+                <div className="block text-small font-bold text-slate-500 ml-1 mt-4">
                   ✔ 중복 선택 가능
                 </div>
                 <div className="flex flex-col gap-3 whitespace-pre-wrap">
@@ -509,7 +512,7 @@ export default function FeedbackPage() {
                         key={t}
                         type="button"
                         onClick={() => toggleTaste(t)}
-                        className={`w-full text-left py-4 px-4 rounded-full font-bold transition-all ${
+                        className={`w-full text-lg text-left pl-6 py-4 px-4 rounded-full font-bold transition-all ${
                           isSelected
                             ? "bg-emerald-500 text-white shadow-md shadow-emerald-100"
                             : "bg-slate-50 text-slate-500"
@@ -519,12 +522,12 @@ export default function FeedbackPage() {
                       </button>
                     );
                   })}
-                  <label className="block text-sm font-bold text-slate-500 ml-1 mt-4">
+                  <label className="block text-small font-bold text-slate-500 ml-1 mt-4">
                     기타
                   </label>
                   <input
                     type="text"
-                    className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full p-4 pl-6 text-lg bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                     onChange={(e) =>
                       setFormData({
                         ...formData,
@@ -539,18 +542,18 @@ export default function FeedbackPage() {
 
           {step === 6 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 3-3. 당신과 음식의 관계 🍚
               </h2>
               <div className="space-y-4">
-                <label className="block text-base font-bold text-slate-800 ml-1 mt-4">
+                <label className="block text-xl font-bold text-slate-800 ml-1 mt-4">
                   식사메뉴 결정 시 가장 큰 영향을 주는 요인{" "}
                   <span className="text-red-500">*</span>
                 </label>
-                <div className="block text-sm font-bold text-slate-500 ml-1 mt-4">
+                <div className="block text-small font-bold text-slate-500 ml-1 mt-4">
                   ✔ 중복 선택 가능
                 </div>
-                <div className="flex flex-col gap-3 whitespace-pre-wrap">
+                <div className="flex flex-col text-lg gap-3 whitespace-pre-wrap">
                   {[
                     "맛",
                     "건강(영양)",
@@ -569,7 +572,7 @@ export default function FeedbackPage() {
                         key={m}
                         type="button"
                         onClick={() => toggleFocus(m)} // 아까 만든 함수 실행
-                        className={`w-full text-left py-4 px-4 rounded-full font-bold transition-all ${
+                        className={`w-full text-left pl-6 py-4 px-4 rounded-full font-bold transition-all ${
                           isSelected
                             ? "bg-emerald-500 text-white shadow-md shadow-emerald-100"
                             : "bg-slate-50 text-slate-500"
@@ -579,12 +582,12 @@ export default function FeedbackPage() {
                       </button>
                     );
                   })}
-                  <label className="block text-sm font-bold text-slate-500 ml-1 mt-4">
+                  <label className="block text-small font-bold text-slate-500 ml-1 mt-4">
                     기타
                   </label>
                   <input
                     type="text"
-                    className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                     onChange={(e) =>
                       setFormData({
                         ...formData,
@@ -599,14 +602,14 @@ export default function FeedbackPage() {
 
           {step === 7 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-1. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   월요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[10px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 수요일 저녁일 경우 이틀 전 (월요일) 식사 메뉴를
                   적어주세요!
                   <br />
@@ -621,12 +624,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.mon[meal.id]}
                       onChange={(e) =>
                         handleDietChange("mon", meal.id, e.target.value)
@@ -640,15 +643,15 @@ export default function FeedbackPage() {
 
           {step === 8 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-2. 일주일 동안 먹은 음식들 🍔
               </h2>
 
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   화요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 수요일 저녁일 경우 어제(화요일) 식사 메뉴를
                   적어주세요!
                   <br />
@@ -663,12 +666,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.tue[meal.id]}
                       onChange={(e) =>
                         handleDietChange("tue", meal.id, e.target.value)
@@ -682,14 +685,14 @@ export default function FeedbackPage() {
 
           {step === 9 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-3. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   수요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-small font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 수요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -704,12 +707,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.wed[meal.id]}
                       onChange={(e) =>
                         handleDietChange("wed", meal.id, e.target.value)
@@ -723,14 +726,14 @@ export default function FeedbackPage() {
 
           {step === 10 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-4. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   목요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 목요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -745,12 +748,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.thu[meal.id]}
                       onChange={(e) =>
                         handleDietChange("thu", meal.id, e.target.value)
@@ -764,14 +767,14 @@ export default function FeedbackPage() {
 
           {step === 11 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-5. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   금요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 금요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -786,12 +789,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.fri[meal.id]}
                       onChange={(e) =>
                         handleDietChange("fri", meal.id, e.target.value)
@@ -805,14 +808,14 @@ export default function FeedbackPage() {
 
           {step === 12 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-6. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   토요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 토요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -827,12 +830,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.sat[meal.id]}
                       onChange={(e) =>
                         handleDietChange("sat", meal.id, e.target.value)
@@ -846,14 +849,14 @@ export default function FeedbackPage() {
 
           {step === 13 && (
             <div className="space-y-6 animate-in fade-in duration-500">
-              <h2 className="text-xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900">
                 4-7. 일주일 동안 먹은 음식들 🍔
               </h2>
               <div className="space-y-4">
-                <label className="block -mt-[10px] text-base font-black text-slate-900 ml-1">
+                <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   일요일
                 </label>
-                <label className="block -mt-[10px] text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 일요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -868,12 +871,12 @@ export default function FeedbackPage() {
                   { id: "snack", label: "간식" },
                 ].map((meal) => (
                   <div key={meal.id}>
-                    <label className="block text-sm font-bold text-slate-500 ml-1 mb-1">
+                    <label className="block text-small font-bold text-slate-500 ml-1 mb-1">
                       {meal.label}
                     </label>
                     <input
                       type="text"
-                      className="w-full p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full text-lg pl-6 p-4 bg-slate-50 rounded-full outline-none focus:ring-2 focus:ring-emerald-500"
                       value={formData.weekly_diet.sun[meal.id]}
                       onChange={(e) =>
                         handleDietChange("sun", meal.id, e.target.value)
@@ -888,10 +891,10 @@ export default function FeedbackPage() {
           {step === 14 && (
             <div className="space-y-6 animate-in fade-in duration-500">
               <label className="block font-bold text-slate-700 mb-2">
-                <h2 className="text-xl font-black text-slate-900">
+                <h2 className="text-2xl font-black text-slate-900">
                   5. 좋아하는 음식 리스트 🍔
                 </h2>
-                <label className="block py-2 mb-5 text-xs font-bold text-slate-500 ml-1 ">
+                <label className="block py-2 mb-5 text-xl font-bold text-slate-500 ml-1 ">
                   좋아하는 음식들을 추가해주세요!{" "}
                   <span className="text-red-500">*</span>
                 </label>
@@ -904,7 +907,7 @@ export default function FeedbackPage() {
                     value={food}
                     onChange={(e) => handleFoodChange(index, e.target.value)}
                     placeholder={`음식 입력 (${index + 1})`}
-                    className="flex-1 py-4 px-4 bg-slate-50 rounded-full border-none focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+                    className="text-lg flex-1 pl-6 py-4 px-4 bg-slate-50 rounded-full border-none focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
                   />
 
                   {/* 삭제 버튼: 항목이 2개 이상일 때만 보여주거나 항상 보여줌 */}
@@ -934,7 +937,7 @@ export default function FeedbackPage() {
             {step > 1 && (
               <button
                 onClick={() => setStep(step - 1)}
-                className="flex-1 py-5 bg-slate-100 text-slate-500 rounded-full font-black"
+                className="text-xl flex-1 py-5 bg-slate-100 text-slate-500 rounded-full font-black"
               >
                 이전
               </button>
@@ -945,7 +948,7 @@ export default function FeedbackPage() {
                 // ❌ 기존: onClick={() => setStep(step + 1)}
                 // ✅ 수정: 검증 로직이 있는 함수 호출
                 onClick={handleNextStep}
-                className="flex-[2] py-5 bg-slate-900 text-white rounded-full font-black shadow-xl active:scale-95 transition-all"
+                className="text-xl flex-[2] py-5 bg-slate-900 text-white rounded-full font-black shadow-xl active:scale-95 transition-all"
               >
                 다음 단계로
               </button>
@@ -953,7 +956,7 @@ export default function FeedbackPage() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="flex-[2] py-5 bg-emerald-500 text-white rounded-full font-black shadow-xl"
+                className="text-xl flex-[2] py-5 bg-emerald-500 text-white rounded-full font-black shadow-xl"
               >
                 {loading ? "제출 중..." : "제출하고 완료하기"}
               </button>

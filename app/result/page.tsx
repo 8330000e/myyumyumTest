@@ -121,7 +121,7 @@ export default function ResultPage({
           style={{ backgroundColor: finalResult.lightColor }}
         >
           <h3
-            className="font-black mb-5 flex items-center gap-2 text-lg"
+            className="font-black mb-5 flex items-center gap-2 text-xl"
             style={{ color: finalResult.textColor }}
           >
             📍 맞춤 건강 처방전
@@ -130,13 +130,13 @@ export default function ResultPage({
             {/* 처방 1: 조언 */}
             <div className="flex gap-4 items-start">
               <div
-                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
+                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-small font-bold text-white"
                 style={{ backgroundColor: finalResult.mainColor }}
               >
                 1
               </div>
               <p
-                className="text-[14px] font-semibold leading-snug opacity-90 break-keep"
+                className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
               >
                 {finalResult.advice}
@@ -145,13 +145,13 @@ export default function ResultPage({
             {/* 처방 2: 분석 */}
             <div className="flex gap-4 items-start">
               <div
-                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
+                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-small font-bold text-white"
                 style={{ backgroundColor: finalResult.mainColor }}
               >
                 2
               </div>
               <p
-                className="text-[14px] font-semibold leading-snug opacity-90 break-keep"
+                className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
               >
                 {finalResult.analysis}
@@ -160,13 +160,13 @@ export default function ResultPage({
             {/* 처방 3: 해결법 */}
             <div className="flex gap-4 items-start">
               <div
-                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
+                className="w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center text-small font-bold text-white"
                 style={{ backgroundColor: finalResult.mainColor }}
               >
                 3
               </div>
               <p
-                className="text-[14px] font-semibold leading-snug opacity-90 break-keep"
+                className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
               >
                 {finalResult.prescription}
@@ -184,16 +184,16 @@ export default function ResultPage({
 
           <div className="text-center space-y-5 pt-2">
             <div className="space-y-1">
-              <h3 className="text-xl font-black text-slate-800 tracking-tight">
+              <h3 className="text-2xl font-black text-slate-800 tracking-tight">
                 1/2제작자의 작은 부탁
               </h3>
-              <p className="text-[13px] text-slate-500 font-medium">
+              <p className="text-base text-slate-500 font-medium">
                 더 나은 분석을 위해 데이터와 사투 중입니다..!
               </p>
             </div>
 
             <div className="bg-slate-50 rounded-2xl p-4">
-              <p className="text-[14px] text-slate-700 leading-relaxed font-semibold break-keep">
+              <p className="text-base text-slate-700 leading-relaxed font-semibold break-keep">
                 테스트가 즐거우셨다면{" "}
                 <span className="text-indigo-600 underline decoration-2 underline-offset-4">
                   딱 1분의 설문
@@ -205,12 +205,12 @@ export default function ResultPage({
             {/* 🔥 아주 두껍고 눈에 띄는 버튼 */}
             <Link
               href={`/feedback?animal=${finalResult.name}&psy=${finalResult.psychologyType}&beh=${finalResult.behaviorPattern}`}
-              className="inline-flex items-center justify-center w-full py-5 bg-indigo-600 text-white rounded-[1.5rem] text-lg font-black shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-[0.98] transition-all"
+              className="inline-flex text-xl items-center justify-center w-full py-5 bg-indigo-600 text-white rounded-[1.5rem] text-lg font-black shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-[0.98] transition-all"
             >
               설문 참여하고 응원하기
             </Link>
 
-            <p className="text-[11px] text-slate-400 font-medium">
+            <p className="text-small text-slate-400 font-medium pl-2 pr-2">
               보내주신 소중한 데이터는 제작 중인 입맛에 맞는 메뉴을 찾아주는
               앱서비스의 중요한 데이터로 사용됩니다!
             </p>
@@ -218,14 +218,14 @@ export default function ResultPage({
         </section>
 
         {/* 💬 카톡 공유 & 다시하기 섹션 */}
-        <div className="grid grid-cols-2 gap-3 cursor-pointer">
+        <div className="grid grid-cols-2 gap-3 cursor-pointer ">
           {/* 1. 이 부분을 컴포넌트로 교체합니다 */}
           <KakaoShare type={finalResult.name} />
 
           {/* 2. 다시하기 버튼 */}
           <Link
             href="/"
-            className="flex items-center justify-center py-5 bg-slate-900 text-white rounded-[2rem] font-bold text-lg hover:bg-slate-800 shadow-md transition-all active:scale-95"
+            className="flex items-center justify-center text-xl py-5 bg-slate-900 text-white rounded-[2rem] font-bold text-lg hover:bg-slate-800 shadow-md transition-all active:scale-95"
           >
             다시하기
           </Link>
