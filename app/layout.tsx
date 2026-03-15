@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "입맛저격! 뭐먹지?",
     description: "내 식습관은 어떤 동물 유형일까? 지금 테스트해보세요!",
-    url: "https://your-project.vercel.app", // 실제 배포 주소
+    url: "https://myyumyum-test.vercel.app/", // 실제 배포 주소
     siteName: "입맛저격",
     images: [
       {
