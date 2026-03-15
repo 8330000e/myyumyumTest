@@ -15,3 +15,13 @@ body {
   color: var(--foreground);
   font-family: omyu;
 }
+
+@theme {
+  /* 변수 이름 앞에 --animate- 를 붙여야 클래스로 인식됩니다 */
+  --animate-bounce-slow: bounce-slow 3s infinite;
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(-7%); }
+    50% { transform: translateY(0); }
+  }
+}
