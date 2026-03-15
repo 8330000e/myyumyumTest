@@ -67,6 +67,7 @@ export default function ResultPage({
           <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
           </p>
+          <p className="text-xs">동물유형 그림 작업중...!</p>
         </section>
 
         {/* 능력치 분석 */}

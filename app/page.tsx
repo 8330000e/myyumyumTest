@@ -46,7 +46,7 @@ export default function Home() {
         <img
           src="/img/cover.png"
           alt="Description"
-          className="w-full max-w-xs mx-auto animate-slide-x animate-swing"
+          className="w-full max-w-xs mx-auto bounce-slow fade-in-up"
         />
       </div>
 
