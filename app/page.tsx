@@ -46,7 +46,7 @@ export default function Home() {
         <img
           src="/img/cover.png"
           alt="Description"
-          className="w-full max-w-xs mx-auto animate-bounce"
+          className="w-full max-w-xs mx-auto animate-bounce mt-[-10px]"
         />
       </div>
 
@@ -66,7 +66,7 @@ export default function Home() {
       </div> */}
 
       {/* 🚀 메인 액션 버튼 */}
-      <div className=" max-w-sm mx-auto space-y-4">
+      <div className=" max-w-sm mx-auto space-y-2">
         <Link
           href="/test"
           className="group relative flex items-center justify-center w-80 py-5 bg-slate-900 text-white rounded-[2.5rem] text-2xl font-black transition-all hover:bg-emerald-600 active:scale-95 shadow-xl shadow-slate-200"
