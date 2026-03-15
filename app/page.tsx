@@ -43,11 +43,11 @@ export default function Home() {
           <br />
           당신의 진짜 모습을 찾아보세요.
         </p>
-        <img
+        {/* <img
           src="/img/cover.png"
           alt="Description"
           className="w-full max-w-xs mx-auto animate-slide-x animate-swing"
-        />
+        /> */}
       </div>
 
       {/* 카드 프리뷰 영역 (재미 요소) */}
