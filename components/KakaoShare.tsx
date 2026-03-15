@@ -10,6 +10,7 @@ declare global {
 
 export default function KakaoShare({ type }: { type: string }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
 
   useEffect(() => {
     // SDK 로드 확인용 인터벌
@@ -40,19 +41,26 @@ export default function KakaoShare({ type }: { type: string }) {
         description: `내 식습관은 [${type}] 유형! 당신은 어떤 동물인가요?`,
         imageUrl: `${baseUrl}/share-image.jpg`, 
         link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
+          mobileWebUrl: baseUrl,
+          webUrl: baseUrl,
         },
       },
       buttons: [
-        {
-          title: '결과 확인하기',
-          link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
-          },
-        },
-      ],
+    {
+      title: '나도 테스트해보기', // 버튼은 시작 페이지로 유도
+      link: {
+        mobileWebUrl: baseUrl,
+        webUrl: baseUrl,
+      },
+    },
+    {
+      title: '결과 자세히 보기', // 결과가 궁금한 사람을 위해 결과 페이지 유지
+      link: {
+        mobileWebUrl: window.location.href,
+        webUrl: window.location.href,
+      },
+    },
+  ],
     });
   };
 
