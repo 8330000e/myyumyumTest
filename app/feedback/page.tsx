@@ -612,7 +612,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   월요일
                 </label>
-                <label className="block -mt-[10px] text-[15px] font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 수요일 저녁일 경우 이틀 전 (월요일) 식사 메뉴를
                   적어주세요!
                   <br />
@@ -917,7 +917,7 @@ function FeedbackContent() {
                   <button
                     type="button"
                     onClick={() => removeFoodField(index)}
-                    className="p-3 text-slate-400 hover:text-red-500 transition-colors"
+                    className="p-3 text-slate-400 hover:text-red-500 transition-colors "
                   >
                     ✕
                   </button>
