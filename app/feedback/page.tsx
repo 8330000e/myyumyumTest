@@ -105,27 +105,30 @@ function FeedbackContent() {
 
     // 3-2: 주로 선호하는 음식 종류
     if (step === 5) {
-    const hasTaste = formData.taste_sensitivity && formData.taste_sensitivity.length > 0;
-    const hasOtherTaste = formData.taste_sensitivity_other.trim() !== "";
+      const hasTaste =
+        formData.taste_sensitivity && formData.taste_sensitivity.length > 0;
+      const hasOtherTaste = formData.taste_sensitivity_other.trim() !== "";
 
-    if (!hasTaste && !hasOtherTaste) { // 둘 다 없을 때만 차단
-      setErrorField("선호하는 음식");
-      alert("항목을 선택하거나 기타 의견을 입력해주세요!");
-      return;
+      if (!hasTaste && !hasOtherTaste) {
+        // 둘 다 없을 때만 차단
+        setErrorField("선호하는 음식");
+        alert("항목을 선택하거나 기타 의견을 입력해주세요!");
+        return;
+      }
     }
-  }
 
     // 3-3: 메뉴 결정 시 가장 큰 영향을 주는 요인
     if (step === 6) {
-    const hasFocus = formData.main_focus && formData.main_focus.length > 0;
-    const hasOtherFocus = formData.main_focus_other.trim() !== "";
+      const hasFocus = formData.main_focus && formData.main_focus.length > 0;
+      const hasOtherFocus = formData.main_focus_other.trim() !== "";
 
-    if (!hasFocus && !hasOtherFocus) { // 둘 다 없을 때만 차단
-      setErrorField("메뉴 결정 요인");
-      alert("항목을 선택하거나 기타 의견을 입력해주세요!");
-      return;
+      if (!hasFocus && !hasOtherFocus) {
+        // 둘 다 없을 때만 차단
+        setErrorField("메뉴 결정 요인");
+        alert("항목을 선택하거나 기타 의견을 입력해주세요!");
+        return;
+      }
     }
-  }
 
     // 4
 
@@ -651,7 +654,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   화요일
                 </label>
-                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 수요일 저녁일 경우 어제(화요일) 식사 메뉴를
                   적어주세요!
                   <br />
@@ -692,7 +695,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   수요일
                 </label>
-                <label className="block -mt-[15px] text-small font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 수요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -733,7 +736,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   목요일
                 </label>
-                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 목요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -774,7 +777,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   금요일
                 </label>
-                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 금요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -815,7 +818,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   토요일
                 </label>
-                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 토요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -856,7 +859,7 @@ function FeedbackContent() {
                 <label className="block -mt-[10px] text-xl font-black text-slate-900 ml-1">
                   일요일
                 </label>
-                <label className="block -mt-[15px] text-lg font-bold text-slate-500 ml-1 ">
+                <label className="block -mt-[15px] text-[15px] font-bold text-slate-500 ml-1 ">
                   ❔ 오늘이 월요일 저녁일 경우 저번주 일요일 식사 메뉴를
                   적어주세요!
                   <br />
@@ -969,11 +972,15 @@ function FeedbackContent() {
 }
 export default function FeedbackPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl font-bold text-slate-500 animate-pulse">로딩 중...</p>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-xl font-bold text-slate-500 animate-pulse">
+            로딩 중...
+          </p>
+        </div>
+      }
+    >
       <FeedbackContent />
     </Suspense>
   );
