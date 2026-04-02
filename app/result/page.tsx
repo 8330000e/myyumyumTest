@@ -1,20 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, use } from "react";
 import { useState } from "react";
 import KakaoShare from "@/components/KakaoShare";
 import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
 
-export default function ResultPage({
+export default async function ResultPage({
   searchParams,
 }: {
-  searchParams: { psy: string; beh: string };
+  searchParams: Promise<{ psy: string; beh: string }>;
 }) {
-  // 1. 데이터 가져오기 (기본값 설정)
-  const psy = searchParams.psy || "INTUITIVE";
-  const beh = searchParams.beh || "CLOCK";
+  // 1. 비동기 파라미터를 해결합니다.
+  const resolvedParams = use(searchParams);
+
+  const psy = resolvedParams.psy || "INTUITIVE";
+  const beh = resolvedParams.beh || "CLOCK";
+
   const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
 
   useEffect(() => {
