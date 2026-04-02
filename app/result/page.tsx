@@ -3,6 +3,7 @@
 import { use, useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabaseClient"; // 본인의 설정에 맞게 수정
 import { RESULTS } from "@/data/results"; // 본인의 설정에 맞게 수정
+import KakaoShare from "@/components/KakaoShare";
 
 export default function ResultPage({
   searchParams,
@@ -207,12 +208,12 @@ export default function ResultPage({
             </div>
 
             {/* 🔥 아주 두껍고 눈에 띄는 버튼 */}
-            <Link
+            <link
               href={`/feedback?animal=${finalResult.name}&psy=${finalResult.psychologyType}&beh=${finalResult.behaviorPattern}`}
               className="inline-flex text-xl items-center justify-center w-full py-5 bg-indigo-600 text-white rounded-[1.5rem] text-lg font-black shadow-lg shadow-indigo-200 hover:bg-indigo-700 active:scale-[0.98] transition-all"
             >
               설문 참여하고 응원하기
-            </Link>
+            </link>
 
             <p className="text-small text-slate-400 font-medium pl-2 pr-2">
               보내주신 소중한 데이터는 제작 중인 입맛에 맞는 메뉴을 찾아주는
@@ -227,12 +228,12 @@ export default function ResultPage({
           <KakaoShare type={finalResult.name} />
 
           {/* 2. 다시하기 버튼 */}
-          <Link
+          <link
             href="/"
             className="flex items-center justify-center text-xl py-5 bg-slate-900 text-white rounded-[2rem] font-bold text-lg hover:bg-slate-800 shadow-md transition-all active:scale-95"
           >
             다시하기
-          </Link>
+          </link>
         </div>
       </div>
     </div>
