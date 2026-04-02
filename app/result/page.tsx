@@ -1,53 +1,53 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef, use } from "react";
-import { useState } from "react";
-import KakaoShare from "@/components/KakaoShare";
-import { supabase } from "@/lib/supabaseClient";
-import { RESULTS } from "@/data/results";
+import { use, useEffect, useRef, useState } from "react";
+import { supabase } from "@/lib/supabaseClient"; // 본인의 설정에 맞게 수정
+import { RESULTS } from "@/data/results"; // 본인의 설정에 맞게 수정
 
-export default async function ResultPage({
+export default function ResultPage({
   searchParams,
 }: {
-  searchParams: Promise<{ psy: string; beh: string }>;
+  searchParams: Promise<{ psy: string; beh: string }>; // 1. Promise 타입으로 명시
 }) {
-  // 1. 비동기 파라미터를 해결합니다.
+  // 2. 비동기 searchParams를 'use' 훅으로 읽어옵니다.
   const resolvedParams = use(searchParams);
 
+  // 3. 이제 실제 URL 값을 읽을 수 있습니다.
   const psy = resolvedParams.psy || "INTUITIVE";
   const beh = resolvedParams.beh || "CLOCK";
 
+  // 4. 결과 매핑 (RESULTS 객체 구조에 맞게)
   const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
 
+  const isSaved = useRef(false);
+  const [loading, setLoading] = useState(false);
+
+  // 결과에 따른 타이틀 변경
   useEffect(() => {
     if (finalResult.name) {
       document.title = `${finalResult.name} - 식습관 동물 테스트 결과`;
     }
   }, [finalResult.name]);
 
-  const isSaved = useRef(false);
-
+  // DB 저장 로직
   useEffect(() => {
     const saveData = async () => {
       if (isSaved.current) return;
 
       const { error } = await supabase
         .from("test_results")
-        .insert([{ result_type: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
+        .insert([{ result_type: finalResult.name }]);
 
       if (error) {
         console.error("데이터 저장 실패:", error);
       } else {
-        console.log("✅ 데이터 저장 성공!");
+        console.log("✅ 데이터 저장 성공:", finalResult.name);
         isSaved.current = true;
       }
     };
 
     saveData();
-  }, [finalResult]); // 의존성 배열 추가
-
-  const [loading, setLoading] = useState(false);
+  }, [finalResult]);
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-6 pb-24">
