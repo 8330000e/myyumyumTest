@@ -68,7 +68,6 @@ export default function ResultPage({
           <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
           </p>
-          
         </section>
 
         {/* 능력치 분석 */}

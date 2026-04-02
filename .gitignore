@@ -37,4 +37,8 @@ next-env.d.ts
 
 node_modules/
 
-방향.txt
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
