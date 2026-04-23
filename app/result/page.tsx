@@ -1,20 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, use } from "react";
 import { useState } from "react";
 import KakaoShare from "@/components/KakaoShare";
 import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
 
-export default async function ResultPage({
+export default function ResultPage({
   searchParams,
 }: {
   searchParams: Promise<{ psy: string; beh: string }>;
 }) {
-  const resolvedParams = await searchParams;
-  const psy = resolvedParams.psy || "INTUITIVE";
-  const beh = resolvedParams.beh || "CLOCK";
+  const resolvedParams = use(searchParams);
+  const beh = resolvedParams.beh;
+  const psy = resolvedParams.psy;
   // 1. 데이터 가져오기 (기본값 설정)
   const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
 
@@ -35,7 +35,12 @@ export default async function ResultPage({
         .insert([{ result_type: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
 
       if (error) {
-        console.error("데이터 저장 실패:", error);
+        console.error("❌ 에러 상세:", {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint,
+        });
       } else {
         console.log("✅ 데이터 저장 성공!");
         isSaved.current = true;
