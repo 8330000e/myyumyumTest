@@ -10,11 +10,12 @@ import { RESULTS } from "@/data/results";
 export default async function ResultPage({
   searchParams,
 }: {
-  searchParams: { psy: string; beh: string };
+  searchParams: Promise<{ psy: string; beh: string }>;
 }) {
+  const resolvedParams = await searchParams;
+  const psy = resolvedParams.psy || "INTUITIVE";
+  const beh = resolvedParams.beh || "CLOCK";
   // 1. 데이터 가져오기 (기본값 설정)
-  const psy = searchParams.psy || "INTUITIVE";
-  const beh = searchParams.beh || "CLOCK";
   const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
 
   useEffect(() => {
