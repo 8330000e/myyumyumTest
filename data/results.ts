@@ -385,7 +385,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       psychologyType: "Passive Eating",
       behaviorPattern: "Binge-Restrict Cycle",
       mainColor: "#FB923C",
-      textColor: "#FFFFFF",
+      textColor: "#FB923C",
       lightColor: "#FFEDD5",
       description: "넋 놓고 먹다 보니 어느새 배가 빵빵해져 움직이지 못함!",
       advice: "포만감 신호는 20분 뒤에 도착한다는 걸 잊지 마세요.",
