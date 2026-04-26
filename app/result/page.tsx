@@ -7,6 +7,8 @@ import KakaoShare from "@/components/KakaoShare";
 import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
 
+
+
 export default function ResultPage({
   searchParams,
 }: {
@@ -16,13 +18,21 @@ export default function ResultPage({
   const beh = resolvedParams.beh;
   const psy = resolvedParams.psy;
   // 1. 데이터 가져오기 (기본값 설정)
-  const finalResult = RESULTS[psy]?.[beh] || RESULTS.INTUITIVE.CLOCK;
+  const finalResult = RESULTS[psy]?.[beh] || RESULTS.ERROR.ERROR;
+
+  
+  const [errorImg, setErrorImg] = useState(false);
+  useEffect(()=>{
+    if(finalResult === RESULTS.ERROR.ERROR) {
+      setErrorImg(true);
+    }else{
+      setErrorImg(false);
+    }
+  },[finalResult]);
 
   useEffect(() => {
-    if (finalResult.name) {
       document.title = `${finalResult.name} - 식습관 동물 테스트 결과`;
-    }
-  }, [finalResult.name]);
+  }, [finalResult?.name]);
 
   const isSaved = useRef(false);
 
@@ -32,7 +42,7 @@ export default function ResultPage({
 
       const { error } = await supabase
         .from("test_results")
-        .insert([{ result_type: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
+        .insert([{ result: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
 
       if (error) {
         console.error("❌ 에러 상세:", {
@@ -46,7 +56,6 @@ export default function ResultPage({
         isSaved.current = true;
       }
     };
-
     saveData();
   }, [finalResult]); // 의존성 배열 추가
 
@@ -65,11 +74,12 @@ export default function ResultPage({
             className="text-base font-bold opacity-60 mb-1"
             style={{ color: finalResult.mainColor }}
           >
-            {finalResult.psychologyType} & {finalResult.behaviorPattern}
+            {finalResult.psychologyType}{errorImg? null : "&" }{finalResult.behaviorPattern}
           </h2>
           <h1 className="text-4xl font-black text-slate-900 mb-6">
             {finalResult.name}
           </h1>
+           {errorImg? "죄송합니다. 다음에 이용해주세요" : null}
           <p className="text-xs text-slate-400 "><img src={`/img/${finalResult.image}`} alt={finalResult.name} /></p>
           <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
@@ -145,8 +155,8 @@ export default function ResultPage({
               <p
                 className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
-              >
-                {finalResult.advice}
+              >                
+            {errorImg? "결과를 불러올 수 없습니다." : finalResult.advice}
               </p>
             </div>
             {/* 처방 2: 분석 */}
@@ -161,7 +171,7 @@ export default function ResultPage({
                 className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
               >
-                {finalResult.analysis}
+                {errorImg? "결과를 불러올 수 없습니다." : finalResult.analysis}
               </p>
             </div>
             {/* 처방 3: 해결법 */}
@@ -176,7 +186,7 @@ export default function ResultPage({
                 className="text-base break-words font-semibold leading-snug opacity-90 break-keep"
                 style={{ color: finalResult.textColor }}
               >
-                {finalResult.prescription}
+                {errorImg? "결과를 불러올 수 없습니다." : finalResult.prescription}
               </p>
             </div>
           </div>
