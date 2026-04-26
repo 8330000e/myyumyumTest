@@ -23,7 +23,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
   INTUITIVE: {
     CLOCK: {
       name: "바른생활 판다",
-      image: "intutive_clock.png",
+      image: "intuitive_clock.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Rhythmic Pattern",
       mainColor: "#27c962",
