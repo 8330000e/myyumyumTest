@@ -70,7 +70,7 @@ export default function ResultPage({
           <h1 className="text-4xl font-black text-slate-900 mb-6">
             {finalResult.name}
           </h1>
-          <p className="text-xs text-slate-400 ">동물그림 작업중...!</p>
+          <p className="text-xs text-slate-400 "><img src={finalResult.imgage} alt={finalResult.name} /></p>
           <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
           </p>
