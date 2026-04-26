@@ -74,12 +74,12 @@ export default function ResultPage({
             className="text-base font-bold opacity-60 mb-1"
             style={{ color: finalResult.mainColor }}
           >
-            {finalResult.psychologyType}{errorImg? null : "&" }{finalResult.behaviorPattern}
+            {finalResult.psychologyType}{errorImg? null : " & " }{finalResult.behaviorPattern}
           </h2>
           <h1 className="text-4xl font-black text-slate-900 mb-6">
             {finalResult.name}
           </h1>
-           {errorImg? "죄송합니다. 다음에 이용해주세요" : null}
+           {errorImg? "죄송합니다. 다음에 이용해주세요." : null}
           <p className="text-xs text-slate-400 "><img src={`/img/${finalResult.image}`} alt={finalResult.name} /></p>
           <p className="text-slate-600 text-lg leading-relaxed break-keep">
             {finalResult.description}
