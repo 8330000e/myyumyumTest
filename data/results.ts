@@ -1,6 +1,6 @@
 export type AnimalResult = {
   name: string;
-  imgage: string;
+  image: string;
   psychologyType: string;
   behaviorPattern: string;
   mainColor: string;
@@ -23,7 +23,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
   INTUITIVE: {
     CLOCK: {
       name: "바른생활 판다",
-      imgage: "/img/intutive_clock.png",
+      image: "intutive_clock.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Rhythmic Pattern",
       mainColor: "#27c962",
@@ -46,7 +46,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     ROLLER: {
       name: "사냥 성공한 사자",
-      imgage: "/img/intutive_roller.png",
+      image: "intutive_roller.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Binge-Restrict Cycle",
       mainColor: "#FB923C",
@@ -68,7 +68,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     NIGHT: {
       name: "미식가 부엉이",
-      imgage: "/img/intutive_night.png",
+      image: "intutive_night.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Nocturnal Hyperphagia",
       mainColor: "#1E293B",
@@ -89,7 +89,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     SMALL: {
       name: "깐깐한 고양이",
-      imgage: "/img/intutive_small.png",
+      image: "intutive_small.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Restrictive Intake",
       mainColor: "#94A3B8",
@@ -111,7 +111,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     CONSTANT: {
       name: "오물오물 다람쥐",
-      imgage: "/img/intutive_constant.png",
+      image: "intutive_constant.png",
       psychologyType: "Intuitive Eating",
       behaviorPattern: "Grazing Pattern",
       mainColor: "#FACC15",
@@ -135,7 +135,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
   EMOTIONAL: {
     CLOCK: {
       name: "평온한 코끼리",
-      imgage: "/img/emotional_clock.png",
+      image: "emotional_clock.png",
       psychologyType: "Emotional Eating",
       behaviorPattern: "Rhythmic Pattern",
       mainColor: "#F87171",
@@ -157,7 +157,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     ROLLER: {
       name: "폭주하는 멧돼지",
-      imgage: "/img/emotional_roller.png",
+      image: "emotional_roller.png",
       psychologyType: "Emotional Eating",
       behaviorPattern: "Binge-Restrict Cycle",
       mainColor: "#FB923C",
@@ -179,7 +179,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     NIGHT: {
       name: "위로가 필요한 늑대",
-      imgage: "/img/emotional_night.png",
+      image: "emotional_night.png",
       psychologyType: "Emotional Eating",
       behaviorPattern: "Nocturnal Hyperphagia",
       mainColor: "#1E293B",
@@ -201,7 +201,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     SMALL: {
       name: "상처받은 사슴",
-      imgage: "/img/emotional_small.png",
+      image: "emotional_small.png",
       psychologyType: "Emotional Eating",
       behaviorPattern: "Restrictive Intake",
       mainColor: "#94A3B8",
@@ -223,7 +223,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     CONSTANT: {
       name: "간식 저장고 햄스터",
-      imgage: "/img/emotional_constant.png",
+      image: "emotional_constant.png",
       psychologyType: "Emotional Eating",
       behaviorPattern: "Grazing Pattern",
       mainColor: "#FACC15",
@@ -247,7 +247,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
   FUNCTIONAL: {
     CLOCK: {
       name: "설계왕 비버",
-      imgage: "/img/functional_clock.png",
+      image: "functional_clock.png",
       psychologyType: "Functional Eating",
       behaviorPattern: "Rhythmic Pattern",
       mainColor: "#60A5FA",
@@ -269,7 +269,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     ROLLER: {
       name: "몰아 먹는 낙타",
-      imgage: "/img/functional_roller.png",
+      image: "functional_roller.png",
       psychologyType: "Functional Eating",
       behaviorPattern: "Binge-Restrict Cycle",
       mainColor: "#FB923C",
@@ -290,7 +290,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     NIGHT: {
       name: "밤샘 작업 박쥐",
-      imgage: "/img/functional_night.png",
+      image: "functional_night.png",
       psychologyType: "Functional Eating",
       behaviorPattern: "Nocturnal Hyperphagia",
       mainColor: "#1E293B",
@@ -312,7 +312,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     SMALL: {
       name: "단아한 학",
-      imgage: "/img/functional_small.png",
+      image: "functional_small.png",
       psychologyType: "Functional Eating",
       behaviorPattern: "Restrictive Intake",
       mainColor: "#94A3B8",
@@ -334,7 +334,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     CONSTANT: {
       name: "부지런한 토끼",
-      imgage: "/img/functional_constant.png",
+      image: "functional_constant.png",
       psychologyType: "Functional Eating",
       behaviorPattern: "Grazing Pattern",
       mainColor: "#FACC15",
@@ -358,7 +358,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
   PASSIVE: {
     CLOCK: {
       name: "멍 때리는 소",
-      imgage: "/img/passive_clock.png",
+      image: "passive_clock.png",
       psychologyType: "Passive Eating",
       behaviorPattern: "Rhythmic Pattern",
       mainColor: "#A78BFA",
@@ -381,7 +381,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     ROLLER: {
       name: "배부른 구렁이",
-      imgage: "/img/passive_roller.png",
+      image: "passive_roller.png",
       psychologyType: "Passive Eating",
       behaviorPattern: "Binge-Restrict Cycle",
       mainColor: "#FB923C",
@@ -403,7 +403,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     NIGHT: {
       name: "야행성 너구리",
-      imgage: "/img/passive_night.png",
+      image: "passive_night.png",
       psychologyType: "Passive Eating",
       behaviorPattern: "Nocturnal Hyperphagia",
       mainColor: "#1E293B",
@@ -425,7 +425,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     SMALL: {
       name: "나무 위에 나무늘보",
-      imgage: "/img/passive_small.png",
+      image: "passive_small.png",
       psychologyType: "Passive Eating",
       behaviorPattern: "Restrictive Intake",
       mainColor: "#94A3B8",
@@ -446,7 +446,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
     CONSTANT: {
       name: "입이 바쁜 원숭이",
-      imgage: "/img/passive_constant.png",
+      image: "passive_constant.png",
       psychologyType: "Passive Eating",
       behaviorPattern: "Grazing Pattern",
       mainColor: "#FACC15",
