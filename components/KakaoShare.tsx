@@ -39,7 +39,7 @@ export default function KakaoShare({ type }: { type: string }) {
       content: {
         title: "나의 식습관 동물 유형 테스트",
         description: `내 식습관은 [${type}] 유형! 당신은 어떤 동물인가요?`,
-        imageUrl: "img/share-image.png",
+        imageUrl: "https://your-site.vercel.app/thumbnail.png",
         link: {
           mobileWebUrl: baseUrl,
           webUrl: baseUrl,
