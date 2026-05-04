@@ -477,8 +477,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       lightColor: "#1F2937",
       description: null,
       advice: null,
-      analysis:
-        null,
+      analysis: null,
       prescription: null,
       stats: {
         emotionalControl: 0,
@@ -488,7 +487,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
         mindfulness: 0,
       },
     },
-  }
+  },
 };
 
 // const RESULTS = {
