@@ -29,13 +29,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#27c962",
       textColor: "#1F2937",
       lightColor: "#DCFCE7",
-      description:
-        "내 몸의 신호에 귀 기울이며 규칙적으로 대나무(?)를 챙겨 먹는 식습관의 정석!",
-      advice: "지금의 리듬이 완벽해요. 너무 강박을 갖지 않아도 괜찮아요.",
-      analysis:
-        "내부 신호와 외부 규칙이 조화를 이루는 가장 이상적인 상태입니다.",
-      prescription:
-        "주 1회 치팅 프라이데이 - 하루쯤은 계획 없는 식사를 즐겨보세요.",
+      description: "내 몸 신호에 맞춰 안정적으로 먹는 균형형 식습관",
+      analysis: "몸의 배고픔과 포만감을 잘 인식하고, 식사 리듬도 안정적입니다.",
+      advice: "지나치게 규칙에만 의존하면 유연성이 떨어질 수 있어요.",
+      prescription: "가끔은 계획 없는 식사도 경험해보세요.",
       stats: {
         emotionalControl: 85,
         regularity: 95,
@@ -52,12 +49,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#fb6f3c",
       textColor: "#1F2937",
       lightColor: "#FFEDD5",
-      description:
-        "평소엔 여유롭지만, 꽂히는 맛집에선 고삐 풀린 듯 즐기는 타입!",
-      advice: "즐겁게 먹는 건 좋지만, 급하게 먹으면 소화기관이 놀랄 수 있어요.",
-      analysis:
-        "보상 심리가 작동할 때 억제력이 급격히 저하되는 경향이 보입니다.",
-      prescription: "식후 15분 산책권 - 가벼운 산책으로 에너지를 발산하세요.",
+      description: "감각은 좋지만 식사 리듬이 흔들리는 식습관",
+      analysis: "몸 신호는 잘 느끼지만 식사 패턴이 일정하지 않습니다.",
+      advice: "공복과 과식이 반복될 수 있어요.",
+      prescription: "식사 시간만이라도 일정하게 유지해보세요.",
       stats: {
         emotionalControl: 70,
         regularity: 40,
@@ -74,11 +69,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#1E293B",
       textColor: "#fefeff",
       lightColor: "#3b4351",
-      description: "모두가 잠든 밤, 오롯이 맛에 집중하며 하루를 보상받는 타입!",
-      advice: "밤에 먹는 즐거움은 크지만, 위장은 쉴 시간이 필요해요.",
-      analysis:
-        "낮 동안의 긴장이 해제되는 심야 시간에 감각이 과도하게 예민해집니다.",
-      prescription: "취침 3시간 전 공복 - 위장에게도 퇴근 시간을 선물하세요.",
+      description: "낮엔 조절하지만 밤에 무너지는 식습관",
+      analysis: "밤이 되면 식욕이 강해지는 패턴입니다.",
+      advice: "야식이 수면과 다음날 컨디션에 영향을 줄 수 있어요.",
+      prescription: "저녁 식사를 충분히 만족스럽게 먹어보세요.",
       stats: {
         emotionalControl: 80,
         regularity: 50,
@@ -95,12 +89,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#94A3B8",
       textColor: "#1F2937",
       lightColor: "#bfc8d5",
-      description: "맛없으면 안 먹어! 소량이라도 최상의 맛을 추구하는 타입!",
-      advice: "입맛이 까다로워 영양이 불균형해질 수 있으니 주의하세요.",
-      analysis:
-        "음식의 질에 대한 높은 기준이 오히려 필요한 에너지 섭취를 방해합니다.",
-      prescription:
-        "신선한 채소 샐러드 - 하루 한 번, 제철 채소를 꼭 곁들여보세요.",
+      description: "필요한 만큼만 먹는 절제형 식습관",
+      analysis: "과식 없이 몸 상태에 맞춰 먹는 편입니다.",
+      advice: "식사량이 너무 적으면 에너지 부족이 올 수 있어요.",
+      prescription: "기본적인 영양 균형은 꼭 챙겨주세요.",
       stats: {
         emotionalControl: 85,
         regularity: 60,
@@ -117,12 +109,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#faaa15",
       textColor: "#1F2937",
       lightColor: "#FEF9C3",
-      description: "맛있는 걸 발견하면 하루 종일 조금씩 행복하게 즐기는 타입!",
-      advice: "야금야금 먹다 보면 내가 얼마나 먹었는지 잊기 쉬워요.",
-      analysis:
-        "포만감 신호가 미미하게 지속되어 뇌가 배부름을 명확히 인지하지 못합니다.",
-      prescription:
-        "작은 접시 덜어먹기 - 간식도 접시에 담아 양을 확인하며 드세요.",
+      description: "배고픔을 느끼면 자주 먹는 식습관",
+      analysis: "몸 신호에 민감해 자주 섭취하는 편입니다.",
+      advice: "습관적 섭취가 늘어날 수 있어요.",
+      prescription: "먹기 전에 배고픔을 한 번 체크해보세요.",
       stats: {
         emotionalControl: 75,
         regularity: 45,
@@ -132,118 +122,7 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       },
     },
   },
-  EMOTIONAL: {
-    CLOCK: {
-      name: "평온한 코끼리",
-      image: "emotional_clock.png",
-      psychologyType: "Emotional Eating",
-      behaviorPattern: "Rhythmic Pattern",
-      mainColor: "#7191f8",
-      textColor: "#1F2937",
-      lightColor: "#c2d0ff",
-      description: "흔들리는 마음을 규칙적인 식사로 꽉 붙잡고 있는 노력파!",
-      advice: "가끔은 규칙을 깨도 괜찮아요. 스스로에게 조금 더 너그러워지세요.",
-      analysis:
-        "정서적 불안을 통제하기 위해 식사 규칙에 과도하게 의존하는 양상입니다.",
-      prescription:
-        "따뜻한 차 한 잔 - 식사 전 차를 마시며 마음을 먼저 데워주세요.",
-      stats: {
-        emotionalControl: 50,
-        regularity: 90,
-        bodyAwareness: 60,
-        efficiency: 75,
-        mindfulness: 70,
-      },
-    },
-    ROLLER: {
-      name: "폭주하는 멧돼지",
-      image: "emotional_roller.png",
-      psychologyType: "Emotional Eating",
-      behaviorPattern: "Binge-Restrict Cycle",
-      mainColor: "#443931",
-      textColor: "#1F2937",
-      lightColor: "#958c81",
-      description: "스트레스 받으면 앞뒤 안 가리고 폭풍 흡입으로 푸는 타입!",
-      advice: "감정을 음식으로 덮으려 하면 나중에 후회만 남을 수 있어요.",
-      analysis:
-        "감정적 해소 수단이 '음식'에만 편중되어 있어 폭식 리스크가 매우 높습니다.",
-      prescription:
-        "매운맛 대신 소리 지르기 - 스트레스 해소를 위한 다른 취미를 찾아보세요.",
-      stats: {
-        emotionalControl: 20,
-        regularity: 30,
-        bodyAwareness: 40,
-        efficiency: 50,
-        mindfulness: 45,
-      },
-    },
-    NIGHT: {
-      name: "위로가 필요한 늑대",
-      image: "emotional_night.png",
-      psychologyType: "Emotional Eating",
-      behaviorPattern: "Nocturnal Hyperphagia",
-      mainColor: "#5759b3",
-      textColor: "#1F2937",
-      lightColor: "#918dcb",
-      description: "외로운 밤, 야식으로 마음의 빈자리를 채우는 타입!",
-      advice: "밤의 배고픔은 사실 '외로움'일지도 몰라요.",
-      analysis:
-        "고립감이나 공허함을 물리적인 포만감으로 대체하려는 기제가 강합니다.",
-      prescription:
-        "지인에게 안부 전화 - 야식 배달 앱 대신 친구에게 연락해 보세요.",
-      stats: {
-        emotionalControl: 30,
-        regularity: 40,
-        bodyAwareness: 50,
-        efficiency: 45,
-        mindfulness: 55,
-      },
-    },
-    SMALL: {
-      name: "상처받은 사슴",
-      image: "emotional_small.png",
-      psychologyType: "Emotional Eating",
-      behaviorPattern: "Restrictive Intake",
-      mainColor: "#9b68bd",
-      textColor: "#1F2937",
-      lightColor: "#d5b6eb",
-      description: "마음이 울적하면 입맛이 싹 사라져 기운을 잃어버리는 타입!",
-      advice: "기운이 없으면 마음도 더 약해져요. 한 숟가락이라도 꼭 챙기세요.",
-      analysis:
-        "부정적 정서가 신체 활동을 억제하여 섭식 중단으로 이어지는 소진 상태입니다.",
-      prescription:
-        "부드러운 스프 한 그릇 - 목 넘김이 편한 음식으로 기력을 보충하세요.",
-      stats: {
-        emotionalControl: 40,
-        regularity: 50,
-        bodyAwareness: 45,
-        efficiency: 30,
-        mindfulness: 60,
-      },
-    },
-    CONSTANT: {
-      name: "간식 저장고 햄스터",
-      image: "emotional_constant.png",
-      psychologyType: "Emotional Eating",
-      behaviorPattern: "Grazing Pattern",
-      mainColor: "#fd8aff",
-      textColor: "#1F2937",
-      lightColor: "rgb(254, 223, 255)",
-      description: "불안하거나 심심할 때마다 주전부리를 찾아 헤매는 타입!",
-      advice:
-        "무언가 씹는 행위가 긴장을 풀어주지만, 턱 관절이 고생할 수 있어요.",
-      analysis: "불안을 해소하기 위한 구강 자극 추구 성향이 강하게 나타납니다.",
-      prescription:
-        "껌이나 견과류 - 칼로리가 낮거나 오래 씹을 수 있는 걸 고르세요.",
-      stats: {
-        emotionalControl: 45,
-        regularity: 35,
-        bodyAwareness: 55,
-        efficiency: 50,
-        mindfulness: 30,
-      },
-    },
-  },
+
   FUNCTIONAL: {
     CLOCK: {
       name: "설계왕 비버",
@@ -253,12 +132,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#45ead6",
       textColor: "#1F2937",
       lightColor: "#e2fffc",
-      description: "완벽한 영양 설계를 시간 맞춰 주입하는 효율 끝판왕!",
-      advice: "식사는 업무가 아니에요! 가끔은 맛의 즐거움도 느껴보세요.",
-      analysis:
-        "음식을 단순한 에너지원으로만 취급하여 식사의 심리적 가치를 간과합니다.",
-      prescription:
-        "노트북 덮고 식사하기 - 밥 먹을 때만큼은 일 생각을 멈추세요.",
+      description: "계획대로 먹는 관리형 식습관",
+      analysis: "영양과 시간을 고려해 체계적으로 식사합니다.",
+      advice: "식사가 의무처럼 느껴질 수 있어요.",
+      prescription: "가끔은 즐거움을 위한 식사도 해보세요.",
       stats: {
         emotionalControl: 90,
         regularity: 95,
@@ -275,11 +152,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#fbe13c",
       textColor: "#1F2937",
       lightColor: "#fff7c6",
-      description: "바쁠 땐 굶으며 버티다 쉴 때 한꺼번에 에너지를 비축함!",
-      advice: "불규칙한 에너지 유입은 몸을 쉽게 피로하게 만들어요.",
-      analysis: "생존 본능에 의한 보상적 과식 패턴이 고착화될 위험이 있습니다.",
-      prescription:
-        "휴대용 에너지바 - 공복이 너무 길어지지 않게 중간중간 채우세요.",
+      description: "관리하다 한 번에 무너지는 식습관",
+      analysis: "절제와 폭식이 반복되는 패턴입니다.",
+      advice: "극단적인 식습관이 반복될 수 있어요.",
+      prescription: "완벽보다 지속 가능한 기준을 만드세요.",
       stats: {
         emotionalControl: 85,
         regularity: 25,
@@ -296,12 +172,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#4c375c",
       textColor: "#1E293B",
       lightColor: "#b3a4bd",
-      description: "밤샘 효율을 위해 야식을 연료처럼 쏟아붓는 프로 일꾼!",
-      advice: "밤에 쓴 에너지는 낮에 잠으로 보충되지 않아요. 건강이 우선!",
-      analysis:
-        "각성 상태 유지를 위해 고열량 식품을 도파민 공급원으로 활용 중입니다.",
-      prescription:
-        "블루베리나 견과류 - 뇌 회전을 돕는 가벼운 간식을 선택하세요.",
+      description: "낮엔 참고 밤에 몰아먹는 식습관",
+      analysis: "낮의 절제가 밤 폭식으로 이어집니다.",
+      advice: "보상심리 기반 식사가 반복될 수 있어요.",
+      prescription: "낮 식사량을 너무 줄이지 마세요.",
       stats: {
         emotionalControl: 80,
         regularity: 35,
@@ -318,12 +192,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#6daaff",
       textColor: "#1F2937",
       lightColor: "#e3eaf4",
-      description: "최소한의 연료로 화려하게 활동하는 극강의 가성비 타입!",
-      advice: "가성비가 좋아도 기본 영양소는 채워야 날개가 꺾이지 않아요.",
-      analysis:
-        "낮은 에너지 섭취가 장기화되어 신진대사율이 저하되었을 가능성이 큽니다.",
-      prescription:
-        "고단백 단백질 쉐이크 - 부족한 근력을 위해 단백질을 보충하세요.",
+      description: "효율만 따지는 최소 섭취형 식습관",
+      analysis: "식사를 에너지 보충 수단으로만 보는 경향입니다.",
+      advice: "영양 부족 위험이 있습니다.",
+      prescription: "단백질과 필수 영양은 꼭 챙기세요.",
       stats: {
         emotionalControl: 85,
         regularity: 55,
@@ -340,12 +212,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#95ff4f",
       textColor: "#1F2937",
       lightColor: "#e9ffda",
-      description: "지치지 않기 위해 수시로 당분을 보충하며 일하는 타입!",
-      advice: "잦은 당분 섭취는 혈당 롤러코스터를 유발할 수 있어요.",
-      analysis:
-        "지속적인 당 공급으로 인슐린 저항성에 무리가 갈 수 있는 습관입니다.",
-      prescription:
-        "설탕 대신 다크 초콜릿 - 당 충전도 조금 더 건강한 방식으로!",
+      description: "계속 보충하는 에너지 관리형 식습관",
+      analysis: "에너지를 유지하기 위해 자주 섭취합니다.",
+      advice: "무의식 섭취가 늘어날 수 있어요.",
+      prescription: "섭취량을 한 번 기록해보세요.",
       stats: {
         emotionalControl: 75,
         regularity: 40,
@@ -355,6 +225,110 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       },
     },
   },
+
+  EMOTIONAL: {
+    CLOCK: {
+      name: "평온한 코끼리",
+      image: "emotional_clock.png",
+      psychologyType: "Emotional Eating",
+      behaviorPattern: "Rhythmic Pattern",
+      mainColor: "#7191f8",
+      textColor: "#1F2937",
+      lightColor: "#c2d0ff",
+      description: "감정 영향은 있지만 리듬은 유지하는 식습관",
+      analysis: "기분에 영향을 받지만 식사 패턴은 안정적입니다.",
+      advice: "감정이 쌓이면 폭식으로 이어질 수 있어요.",
+      prescription: "스트레스 해소 방법을 다양화해보세요.",
+      stats: {
+        emotionalControl: 50,
+        regularity: 90,
+        bodyAwareness: 60,
+        efficiency: 75,
+        mindfulness: 70,
+      },
+    },
+    ROLLER: {
+      name: "폭주하는 멧돼지",
+      image: "emotional_roller.png",
+      psychologyType: "Emotional Eating",
+      behaviorPattern: "Binge-Restrict Cycle",
+      mainColor: "#443931",
+      textColor: "#1F2937",
+      lightColor: "#958c81",
+      description: "감정 따라 흔들리는 롤러코스터 식습관",
+      analysis: "기분에 따라 식사량이 크게 변합니다.",
+      advice: "폭식/단식 반복 위험이 높아요.",
+      prescription: "감정과 식사를 분리해 인식해보세요.",
+      stats: {
+        emotionalControl: 20,
+        regularity: 30,
+        bodyAwareness: 40,
+        efficiency: 50,
+        mindfulness: 45,
+      },
+    },
+    NIGHT: {
+      name: "위로가 필요한 늑대",
+      image: "emotional_night.png",
+      psychologyType: "Emotional Eating",
+      behaviorPattern: "Nocturnal Hyperphagia",
+      mainColor: "#5759b3",
+      textColor: "#1F2937",
+      lightColor: "#918dcb",
+      description: "야식으로 위로받는 식습관",
+      analysis: "밤에 감정과 식욕이 함께 올라옵니다.",
+      advice: "야식 의존이 강해질 수 있어요.",
+      prescription: "밤 루틴을 바꿔보세요.",
+      stats: {
+        emotionalControl: 30,
+        regularity: 40,
+        bodyAwareness: 50,
+        efficiency: 45,
+        mindfulness: 55,
+      },
+    },
+    SMALL: {
+      name: "상처받은 사슴",
+      image: "emotional_small.png",
+      psychologyType: "Emotional Eating",
+      behaviorPattern: "Restrictive Intake",
+      mainColor: "#9b68bd",
+      textColor: "#1F2937",
+      lightColor: "#d5b6eb",
+      description: "스트레스 받으면 식욕이 줄어드는 식습관",
+      analysis: "감정에 따라 식욕이 감소하는 경향입니다.",
+      advice: "체력 저하로 이어질 수 있어요.",
+      prescription: "최소한의 식사 루틴을 유지하세요.",
+      stats: {
+        emotionalControl: 40,
+        regularity: 50,
+        bodyAwareness: 45,
+        efficiency: 30,
+        mindfulness: 60,
+      },
+    },
+    CONSTANT: {
+      name: "간식 저장고 햄스터",
+      image: "emotional_constant.png",
+      psychologyType: "Emotional Eating",
+      behaviorPattern: "Grazing Pattern",
+      mainColor: "#fd8aff",
+      textColor: "#1F2937",
+      lightColor: "rgb(254, 223, 255)",
+      description: "계속 먹으며 감정을 푸는 식습관",
+      analysis: "음식이 감정 조절 수단이 되는 패턴입니다.",
+      advice: "과섭취로 이어질 수 있어요.",
+      prescription: "대체 행동을 하나 만들어보세요.",
+      stats: {
+        emotionalControl: 45,
+        regularity: 35,
+        bodyAwareness: 55,
+        efficiency: 50,
+        mindfulness: 30,
+      },
+    },
+  },
+
   PASSIVE: {
     CLOCK: {
       name: "멍 때리는 소",
@@ -364,13 +338,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#f5d16e",
       textColor: "#1c1912",
       lightColor: "#fff8e6",
-      description:
-        "아무 생각 없이 늘 먹던 대로, 시간에 맞춰 되새김질하듯 먹음!",
-      advice: "내가 지금 무엇을 먹고 있는지 한 번만 들여다봐 주세요.",
-      analysis:
-        "관성에 의한 섭식 행위가 반복되어 식사의 질적 개선이 일어나지 않습니다.",
-      prescription:
-        "새로운 메뉴 도전 - 늘 가던 식당 말고 새로운 맛을 찾아보세요.",
+      description: "환경에 맞춰 규칙적으로 먹는 식습관",
+      analysis: "주어진 환경에 따라 식사 패턴이 유지됩니다.",
+      advice: "환경이 바뀌면 쉽게 무너질 수 있어요.",
+      prescription: "스스로 기준을 하나 만들어보세요.",
       stats: {
         emotionalControl: 80,
         regularity: 85,
@@ -387,12 +358,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#9dd632",
       textColor: "#1F2937",
       lightColor: "#edffcb",
-      description: "넋 놓고 먹다 보니 어느새 배가 빵빵해져 움직이지 못함!",
-      advice: "포만감 신호는 20분 뒤에 도착한다는 걸 잊지 마세요.",
-      analysis:
-        "외부 자극에 몰입하여 신체가 보내는 포만감 피드백을 수신 거부하고 있습니다.",
-      prescription:
-        "20분 타이머 식사 - 천천히 씹으며 뇌가 배부름을 알게 하세요.",
+      description: "상황 따라 흔들리는 식습관",
+      analysis: "외부 환경에 크게 영향을 받습니다.",
+      advice: "일관성이 부족해질 수 있어요.",
+      prescription: "기본 식사 기준을 정해보세요.",
       stats: {
         emotionalControl: 70,
         regularity: 35,
@@ -409,12 +378,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#364f78",
       textColor: "#1F2937",
       lightColor: "#94a9cb",
-      description: "밤마다 영상 보며 나도 모르게 야식 봉지를 뒤적거리는 타입!",
-      advice: "영상의 자극이 식욕을 더 부추기고 있어요.",
-      analysis:
-        "시각적 미디어 시청과 섭식 행위가 조건 반사적으로 결합되어 있습니다.",
-      prescription:
-        "스마트폰 멀리 두기 - 밥상에서는 오직 밥과 나만 마주하세요.",
+      description: "밤 분위기에 끌려가는 식습관",
+      analysis: "야간 환경에 영향을 받아 먹게 됩니다.",
+      advice: "무의식 야식이 반복될 수 있어요.",
+      prescription: "먹는 시간과 공간을 분리하세요.",
       stats: {
         emotionalControl: 65,
         regularity: 40,
@@ -431,11 +398,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#76dd87",
       textColor: "#1F2937",
       lightColor: "#e6ffea",
-      description: "먹는 것도 귀찮아.. 배고픈 줄도 모르고 축 늘어져 있는 타입!",
-      advice: "귀찮음 때문에 몸의 엔진이 꺼져가고 있어요. 활력이 필요해요!",
-      analysis:
-        "식사 동기가 극도로 저하되어 생체 리듬 전반이 무기력해진 상태입니다.",
-      prescription: "상큼한 과일 주스 - 비타민으로 몸의 스위치를 켜보세요.",
+      description: "먹는 것도 귀찮은 방치형 식습관",
+      analysis: "식사 동기가 낮아 끼니를 놓치기 쉽습니다.",
+      advice: "영양 부족 위험이 있습니다.",
+      prescription: "간단한 고정 식사를 만들어보세요.",
       stats: {
         emotionalControl: 75,
         regularity: 45,
@@ -452,11 +418,10 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
       mainColor: "#a5c600",
       textColor: "#1F2937",
       lightColor: "#f3ffb8",
-      description: "손에 잡히는 대로 계속 입으로 가져가야 직성이 풀리는 타입!",
-      advice: "입이 심심한 건지, 손이 심심한 건지 구분이 필요해요.",
-      analysis:
-        "주의 산만한 환경에서 무의식적인 핑거 푸드 섭취가 습관화되었습니다.",
-      prescription: "무설탕 캔디나 껌 - 칼로리 없는 것으로 입을 달래보세요.",
+      description: "보이면 계속 먹는 무의식 식습관",
+      analysis: "환경에 음식이 있으면 자동으로 섭취합니다.",
+      advice: "과식 위험이 높은 패턴입니다.",
+      prescription: "보이는 음식부터 줄여보세요.",
       stats: {
         emotionalControl: 60,
         regularity: 30,
@@ -489,6 +454,477 @@ export const RESULTS: Record<string, Record<string, AnimalResult>> = {
     },
   },
 };
+
+// export const RESULTS: Record<string, Record<string, AnimalResult>> = {
+//   INTUITIVE: {
+//     CLOCK: {
+//       name: "바른생활 판다",
+//       image: "intuitive_clock.png",
+//       psychologyType: "Intuitive Eating",
+//       behaviorPattern: "Rhythmic Pattern",
+//       mainColor: "#27c962",
+//       textColor: "#1F2937",
+//       lightColor: "#DCFCE7",
+//       description:
+//         "내 몸의 신호에 귀 기울이며 규칙적으로 대나무(?)를 챙겨 먹는 식습관의 정석!",
+//       advice: "지금의 리듬이 완벽해요. 너무 강박을 갖지 않아도 괜찮아요.",
+//       analysis:
+//         "내부 신호와 외부 규칙이 조화를 이루는 가장 이상적인 상태입니다.",
+//       prescription:
+//         "주 1회 치팅 프라이데이 - 하루쯤은 계획 없는 식사를 즐겨보세요.",
+//       stats: {
+//         emotionalControl: 85,
+//         regularity: 95,
+//         bodyAwareness: 90,
+//         efficiency: 80,
+//         mindfulness: 85,
+//       },
+//     },
+//     ROLLER: {
+//       name: "사냥 성공한 사자",
+//       image: "intuitive_roller.png",
+//       psychologyType: "Intuitive Eating",
+//       behaviorPattern: "Binge-Restrict Cycle",
+//       mainColor: "#fb6f3c",
+//       textColor: "#1F2937",
+//       lightColor: "#FFEDD5",
+//       description:
+//         "평소엔 여유롭지만, 꽂히는 맛집에선 고삐 풀린 듯 즐기는 타입!",
+//       advice: "즐겁게 먹는 건 좋지만, 급하게 먹으면 소화기관이 놀랄 수 있어요.",
+//       analysis:
+//         "보상 심리가 작동할 때 억제력이 급격히 저하되는 경향이 보입니다.",
+//       prescription: "식후 15분 산책권 - 가벼운 산책으로 에너지를 발산하세요.",
+//       stats: {
+//         emotionalControl: 70,
+//         regularity: 40,
+//         bodyAwareness: 85,
+//         efficiency: 65,
+//         mindfulness: 75,
+//       },
+//     },
+//     NIGHT: {
+//       name: "미식가 부엉이",
+//       image: "intuitive_night.png",
+//       psychologyType: "Intuitive Eating",
+//       behaviorPattern: "Nocturnal Hyperphagia",
+//       mainColor: "#1E293B",
+//       textColor: "#fefeff",
+//       lightColor: "#3b4351",
+//       description: "모두가 잠든 밤, 오롯이 맛에 집중하며 하루를 보상받는 타입!",
+//       advice: "밤에 먹는 즐거움은 크지만, 위장은 쉴 시간이 필요해요.",
+//       analysis:
+//         "낮 동안의 긴장이 해제되는 심야 시간에 감각이 과도하게 예민해집니다.",
+//       prescription: "취침 3시간 전 공복 - 위장에게도 퇴근 시간을 선물하세요.",
+//       stats: {
+//         emotionalControl: 80,
+//         regularity: 50,
+//         bodyAwareness: 80,
+//         efficiency: 60,
+//         mindfulness: 90,
+//       },
+//     },
+//     SMALL: {
+//       name: "깐깐한 고양이",
+//       image: "intuitive_small.png",
+//       psychologyType: "Intuitive Eating",
+//       behaviorPattern: "Restrictive Intake",
+//       mainColor: "#94A3B8",
+//       textColor: "#1F2937",
+//       lightColor: "#bfc8d5",
+//       description: "맛없으면 안 먹어! 소량이라도 최상의 맛을 추구하는 타입!",
+//       advice: "입맛이 까다로워 영양이 불균형해질 수 있으니 주의하세요.",
+//       analysis:
+//         "음식의 질에 대한 높은 기준이 오히려 필요한 에너지 섭취를 방해합니다.",
+//       prescription:
+//         "신선한 채소 샐러드 - 하루 한 번, 제철 채소를 꼭 곁들여보세요.",
+//       stats: {
+//         emotionalControl: 85,
+//         regularity: 60,
+//         bodyAwareness: 75,
+//         efficiency: 50,
+//         mindfulness: 80,
+//       },
+//     },
+//     CONSTANT: {
+//       name: "오물오물 다람쥐",
+//       image: "intuitive_constant.png",
+//       psychologyType: "Intuitive Eating",
+//       behaviorPattern: "Grazing Pattern",
+//       mainColor: "#faaa15",
+//       textColor: "#1F2937",
+//       lightColor: "#FEF9C3",
+//       description: "맛있는 걸 발견하면 하루 종일 조금씩 행복하게 즐기는 타입!",
+//       advice: "야금야금 먹다 보면 내가 얼마나 먹었는지 잊기 쉬워요.",
+//       analysis:
+//         "포만감 신호가 미미하게 지속되어 뇌가 배부름을 명확히 인지하지 못합니다.",
+//       prescription:
+//         "작은 접시 덜어먹기 - 간식도 접시에 담아 양을 확인하며 드세요.",
+//       stats: {
+//         emotionalControl: 75,
+//         regularity: 45,
+//         bodyAwareness: 70,
+//         efficiency: 65,
+//         mindfulness: 60,
+//       },
+//     },
+//   },
+//   EMOTIONAL: {
+//     CLOCK: {
+//       name: "평온한 코끼리",
+//       image: "emotional_clock.png",
+//       psychologyType: "Emotional Eating",
+//       behaviorPattern: "Rhythmic Pattern",
+//       mainColor: "#7191f8",
+//       textColor: "#1F2937",
+//       lightColor: "#c2d0ff",
+//       description: "흔들리는 마음을 규칙적인 식사로 꽉 붙잡고 있는 노력파!",
+//       advice: "가끔은 규칙을 깨도 괜찮아요. 스스로에게 조금 더 너그러워지세요.",
+//       analysis:
+//         "정서적 불안을 통제하기 위해 식사 규칙에 과도하게 의존하는 양상입니다.",
+//       prescription:
+//         "따뜻한 차 한 잔 - 식사 전 차를 마시며 마음을 먼저 데워주세요.",
+//       stats: {
+//         emotionalControl: 50,
+//         regularity: 90,
+//         bodyAwareness: 60,
+//         efficiency: 75,
+//         mindfulness: 70,
+//       },
+//     },
+//     ROLLER: {
+//       name: "폭주하는 멧돼지",
+//       image: "emotional_roller.png",
+//       psychologyType: "Emotional Eating",
+//       behaviorPattern: "Binge-Restrict Cycle",
+//       mainColor: "#443931",
+//       textColor: "#1F2937",
+//       lightColor: "#958c81",
+//       description: "스트레스 받으면 앞뒤 안 가리고 폭풍 흡입으로 푸는 타입!",
+//       advice: "감정을 음식으로 덮으려 하면 나중에 후회만 남을 수 있어요.",
+//       analysis:
+//         "감정적 해소 수단이 '음식'에만 편중되어 있어 폭식 리스크가 매우 높습니다.",
+//       prescription:
+//         "매운맛 대신 소리 지르기 - 스트레스 해소를 위한 다른 취미를 찾아보세요.",
+//       stats: {
+//         emotionalControl: 20,
+//         regularity: 30,
+//         bodyAwareness: 40,
+//         efficiency: 50,
+//         mindfulness: 45,
+//       },
+//     },
+//     NIGHT: {
+//       name: "위로가 필요한 늑대",
+//       image: "emotional_night.png",
+//       psychologyType: "Emotional Eating",
+//       behaviorPattern: "Nocturnal Hyperphagia",
+//       mainColor: "#5759b3",
+//       textColor: "#1F2937",
+//       lightColor: "#918dcb",
+//       description: "외로운 밤, 야식으로 마음의 빈자리를 채우는 타입!",
+//       advice: "밤의 배고픔은 사실 '외로움'일지도 몰라요.",
+//       analysis:
+//         "고립감이나 공허함을 물리적인 포만감으로 대체하려는 기제가 강합니다.",
+//       prescription:
+//         "지인에게 안부 전화 - 야식 배달 앱 대신 친구에게 연락해 보세요.",
+//       stats: {
+//         emotionalControl: 30,
+//         regularity: 40,
+//         bodyAwareness: 50,
+//         efficiency: 45,
+//         mindfulness: 55,
+//       },
+//     },
+//     SMALL: {
+//       name: "상처받은 사슴",
+//       image: "emotional_small.png",
+//       psychologyType: "Emotional Eating",
+//       behaviorPattern: "Restrictive Intake",
+//       mainColor: "#9b68bd",
+//       textColor: "#1F2937",
+//       lightColor: "#d5b6eb",
+//       description: "마음이 울적하면 입맛이 싹 사라져 기운을 잃어버리는 타입!",
+//       advice: "기운이 없으면 마음도 더 약해져요. 한 숟가락이라도 꼭 챙기세요.",
+//       analysis:
+//         "부정적 정서가 신체 활동을 억제하여 섭식 중단으로 이어지는 소진 상태입니다.",
+//       prescription:
+//         "부드러운 스프 한 그릇 - 목 넘김이 편한 음식으로 기력을 보충하세요.",
+//       stats: {
+//         emotionalControl: 40,
+//         regularity: 50,
+//         bodyAwareness: 45,
+//         efficiency: 30,
+//         mindfulness: 60,
+//       },
+//     },
+//     CONSTANT: {
+//       name: "간식 저장고 햄스터",
+//       image: "emotional_constant.png",
+//       psychologyType: "Emotional Eating",
+//       behaviorPattern: "Grazing Pattern",
+//       mainColor: "#fd8aff",
+//       textColor: "#1F2937",
+//       lightColor: "rgb(254, 223, 255)",
+//       description: "불안하거나 심심할 때마다 주전부리를 찾아 헤매는 타입!",
+//       advice:
+//         "무언가 씹는 행위가 긴장을 풀어주지만, 턱 관절이 고생할 수 있어요.",
+//       analysis: "불안을 해소하기 위한 구강 자극 추구 성향이 강하게 나타납니다.",
+//       prescription:
+//         "껌이나 견과류 - 칼로리가 낮거나 오래 씹을 수 있는 걸 고르세요.",
+//       stats: {
+//         emotionalControl: 45,
+//         regularity: 35,
+//         bodyAwareness: 55,
+//         efficiency: 50,
+//         mindfulness: 30,
+//       },
+//     },
+//   },
+//   FUNCTIONAL: {
+//     CLOCK: {
+//       name: "설계왕 비버",
+//       image: "functional_clock.png",
+//       psychologyType: "Functional Eating",
+//       behaviorPattern: "Rhythmic Pattern",
+//       mainColor: "#45ead6",
+//       textColor: "#1F2937",
+//       lightColor: "#e2fffc",
+//       description: "완벽한 영양 설계를 시간 맞춰 주입하는 효율 끝판왕!",
+//       advice: "식사는 업무가 아니에요! 가끔은 맛의 즐거움도 느껴보세요.",
+//       analysis:
+//         "음식을 단순한 에너지원으로만 취급하여 식사의 심리적 가치를 간과합니다.",
+//       prescription:
+//         "노트북 덮고 식사하기 - 밥 먹을 때만큼은 일 생각을 멈추세요.",
+//       stats: {
+//         emotionalControl: 90,
+//         regularity: 95,
+//         bodyAwareness: 60,
+//         efficiency: 95,
+//         mindfulness: 50,
+//       },
+//     },
+//     ROLLER: {
+//       name: "몰아 먹는 낙타",
+//       image: "functional_roller.png",
+//       psychologyType: "Functional Eating",
+//       behaviorPattern: "Binge-Restrict Cycle",
+//       mainColor: "#fbe13c",
+//       textColor: "#1F2937",
+//       lightColor: "#fff7c6",
+//       description: "바쁠 땐 굶으며 버티다 쉴 때 한꺼번에 에너지를 비축함!",
+//       advice: "불규칙한 에너지 유입은 몸을 쉽게 피로하게 만들어요.",
+//       analysis: "생존 본능에 의한 보상적 과식 패턴이 고착화될 위험이 있습니다.",
+//       prescription:
+//         "휴대용 에너지바 - 공복이 너무 길어지지 않게 중간중간 채우세요.",
+//       stats: {
+//         emotionalControl: 85,
+//         regularity: 25,
+//         bodyAwareness: 50,
+//         efficiency: 80,
+//         mindfulness: 40,
+//       },
+//     },
+//     NIGHT: {
+//       name: "밤샘 작업 박쥐",
+//       image: "functional_night.png",
+//       psychologyType: "Functional Eating",
+//       behaviorPattern: "Nocturnal Hyperphagia",
+//       mainColor: "#4c375c",
+//       textColor: "#1E293B",
+//       lightColor: "#b3a4bd",
+//       description: "밤샘 효율을 위해 야식을 연료처럼 쏟아붓는 프로 일꾼!",
+//       advice: "밤에 쓴 에너지는 낮에 잠으로 보충되지 않아요. 건강이 우선!",
+//       analysis:
+//         "각성 상태 유지를 위해 고열량 식품을 도파민 공급원으로 활용 중입니다.",
+//       prescription:
+//         "블루베리나 견과류 - 뇌 회전을 돕는 가벼운 간식을 선택하세요.",
+//       stats: {
+//         emotionalControl: 80,
+//         regularity: 35,
+//         bodyAwareness: 45,
+//         efficiency: 85,
+//         mindfulness: 60,
+//       },
+//     },
+//     SMALL: {
+//       name: "단아한 학",
+//       image: "functional_small.png",
+//       psychologyType: "Functional Eating",
+//       behaviorPattern: "Restrictive Intake",
+//       mainColor: "#6daaff",
+//       textColor: "#1F2937",
+//       lightColor: "#e3eaf4",
+//       description: "최소한의 연료로 화려하게 활동하는 극강의 가성비 타입!",
+//       advice: "가성비가 좋아도 기본 영양소는 채워야 날개가 꺾이지 않아요.",
+//       analysis:
+//         "낮은 에너지 섭취가 장기화되어 신진대사율이 저하되었을 가능성이 큽니다.",
+//       prescription:
+//         "고단백 단백질 쉐이크 - 부족한 근력을 위해 단백질을 보충하세요.",
+//       stats: {
+//         emotionalControl: 85,
+//         regularity: 55,
+//         bodyAwareness: 50,
+//         efficiency: 90,
+//         mindfulness: 65,
+//       },
+//     },
+//     CONSTANT: {
+//       name: "부지런한 토끼",
+//       image: "functional_constant.png",
+//       psychologyType: "Functional Eating",
+//       behaviorPattern: "Grazing Pattern",
+//       mainColor: "#95ff4f",
+//       textColor: "#1F2937",
+//       lightColor: "#e9ffda",
+//       description: "지치지 않기 위해 수시로 당분을 보충하며 일하는 타입!",
+//       advice: "잦은 당분 섭취는 혈당 롤러코스터를 유발할 수 있어요.",
+//       analysis:
+//         "지속적인 당 공급으로 인슐린 저항성에 무리가 갈 수 있는 습관입니다.",
+//       prescription:
+//         "설탕 대신 다크 초콜릿 - 당 충전도 조금 더 건강한 방식으로!",
+//       stats: {
+//         emotionalControl: 75,
+//         regularity: 40,
+//         bodyAwareness: 55,
+//         efficiency: 70,
+//         mindfulness: 35,
+//       },
+//     },
+//   },
+//   PASSIVE: {
+//     CLOCK: {
+//       name: "멍 때리는 소",
+//       image: "passive_clock.png",
+//       psychologyType: "Passive Eating",
+//       behaviorPattern: "Rhythmic Pattern",
+//       mainColor: "#f5d16e",
+//       textColor: "#1c1912",
+//       lightColor: "#fff8e6",
+//       description:
+//         "아무 생각 없이 늘 먹던 대로, 시간에 맞춰 되새김질하듯 먹음!",
+//       advice: "내가 지금 무엇을 먹고 있는지 한 번만 들여다봐 주세요.",
+//       analysis:
+//         "관성에 의한 섭식 행위가 반복되어 식사의 질적 개선이 일어나지 않습니다.",
+//       prescription:
+//         "새로운 메뉴 도전 - 늘 가던 식당 말고 새로운 맛을 찾아보세요.",
+//       stats: {
+//         emotionalControl: 80,
+//         regularity: 85,
+//         bodyAwareness: 30,
+//         efficiency: 60,
+//         mindfulness: 20,
+//       },
+//     },
+//     ROLLER: {
+//       name: "배부른 구렁이",
+//       image: "passive_roller.png",
+//       psychologyType: "Passive Eating",
+//       behaviorPattern: "Binge-Restrict Cycle",
+//       mainColor: "#9dd632",
+//       textColor: "#1F2937",
+//       lightColor: "#edffcb",
+//       description: "넋 놓고 먹다 보니 어느새 배가 빵빵해져 움직이지 못함!",
+//       advice: "포만감 신호는 20분 뒤에 도착한다는 걸 잊지 마세요.",
+//       analysis:
+//         "외부 자극에 몰입하여 신체가 보내는 포만감 피드백을 수신 거부하고 있습니다.",
+//       prescription:
+//         "20분 타이머 식사 - 천천히 씹으며 뇌가 배부름을 알게 하세요.",
+//       stats: {
+//         emotionalControl: 70,
+//         regularity: 35,
+//         bodyAwareness: 25,
+//         efficiency: 55,
+//         mindfulness: 15,
+//       },
+//     },
+//     NIGHT: {
+//       name: "야행성 너구리",
+//       image: "passive_night.png",
+//       psychologyType: "Passive Eating",
+//       behaviorPattern: "Nocturnal Hyperphagia",
+//       mainColor: "#364f78",
+//       textColor: "#1F2937",
+//       lightColor: "#94a9cb",
+//       description: "밤마다 영상 보며 나도 모르게 야식 봉지를 뒤적거리는 타입!",
+//       advice: "영상의 자극이 식욕을 더 부추기고 있어요.",
+//       analysis:
+//         "시각적 미디어 시청과 섭식 행위가 조건 반사적으로 결합되어 있습니다.",
+//       prescription:
+//         "스마트폰 멀리 두기 - 밥상에서는 오직 밥과 나만 마주하세요.",
+//       stats: {
+//         emotionalControl: 65,
+//         regularity: 40,
+//         bodyAwareness: 35,
+//         efficiency: 50,
+//         mindfulness: 10,
+//       },
+//     },
+//     SMALL: {
+//       name: "나무 위에 나무늘보",
+//       image: "passive_small.png",
+//       psychologyType: "Passive Eating",
+//       behaviorPattern: "Restrictive Intake",
+//       mainColor: "#76dd87",
+//       textColor: "#1F2937",
+//       lightColor: "#e6ffea",
+//       description: "먹는 것도 귀찮아.. 배고픈 줄도 모르고 축 늘어져 있는 타입!",
+//       advice: "귀찮음 때문에 몸의 엔진이 꺼져가고 있어요. 활력이 필요해요!",
+//       analysis:
+//         "식사 동기가 극도로 저하되어 생체 리듬 전반이 무기력해진 상태입니다.",
+//       prescription: "상큼한 과일 주스 - 비타민으로 몸의 스위치를 켜보세요.",
+//       stats: {
+//         emotionalControl: 75,
+//         regularity: 45,
+//         bodyAwareness: 20,
+//         efficiency: 30,
+//         mindfulness: 40,
+//       },
+//     },
+//     CONSTANT: {
+//       name: "입이 바쁜 원숭이",
+//       image: "passive_constant.png",
+//       psychologyType: "Passive Eating",
+//       behaviorPattern: "Grazing Pattern",
+//       mainColor: "#a5c600",
+//       textColor: "#1F2937",
+//       lightColor: "#f3ffb8",
+//       description: "손에 잡히는 대로 계속 입으로 가져가야 직성이 풀리는 타입!",
+//       advice: "입이 심심한 건지, 손이 심심한 건지 구분이 필요해요.",
+//       analysis:
+//         "주의 산만한 환경에서 무의식적인 핑거 푸드 섭취가 습관화되었습니다.",
+//       prescription: "무설탕 캔디나 껌 - 칼로리 없는 것으로 입을 달래보세요.",
+//       stats: {
+//         emotionalControl: 60,
+//         regularity: 30,
+//         bodyAwareness: 35,
+//         efficiency: 45,
+//         mindfulness: 15,
+//       },
+//     },
+//   },
+//   ERROR: {
+//     ERROR: {
+//       name: "결과를 불러올 수 없습니다.",
+//       image: "error.png",
+//       psychologyType: null,
+//       behaviorPattern: null,
+//       mainColor: "#1F2937",
+//       textColor: "#fff",
+//       lightColor: "#1F2937",
+//       description: null,
+//       advice: null,
+//       analysis: null,
+//       prescription: null,
+//       stats: {
+//         emotionalControl: 0,
+//         regularity: 0,
+//         bodyAwareness: 0,
+//         efficiency: 0,
+//         mindfulness: 0,
+//       },
+//     },
+//   },
+// };
 
 // const RESULTS = {
 //   fuel: {
