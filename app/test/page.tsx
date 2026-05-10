@@ -50,6 +50,7 @@ export default function TestPage() {
 
       const { error } = await supabase.from("test_results").insert([
         {
+          created_at: new Date(),
           result: animalTitle,
           psy_type: psy,
           beh_type: beh,
