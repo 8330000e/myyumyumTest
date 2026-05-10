@@ -6,7 +6,6 @@ import { useState } from "react";
 import KakaoShare from "@/components/KakaoShare";
 import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
-import Link from 'next/link';
 
 
 
