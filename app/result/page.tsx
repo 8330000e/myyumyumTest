@@ -8,7 +8,6 @@ import { supabase } from "@/lib/supabaseClient";
 import { RESULTS } from "@/data/results";
 
 
-
 export default function ResultPage({
   searchParams,
 }: {
@@ -36,28 +35,28 @@ export default function ResultPage({
 
   const isSaved = useRef(false);
 
-  useEffect(() => {
-    const saveData = async () => {
-      if (isSaved.current) return;
+  // useEffect(() => {
+  //   const saveData = async () => {
+  //     if (isSaved.current) return;
 
-      const { error } = await supabase
-        .from("test_results")
-        .insert([{ result: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
+  //     const { error } = await supabase
+  //       .from("test_results")
+  //       .insert([{ result: finalResult.name }]); // 객체 전체보다 이름을 저장하는 것이 보통 더 안전합니다.
 
-      if (error) {
-        console.error("❌ 에러 상세:", {
-          message: error.message,
-          code: error.code,
-          details: error.details,
-          hint: error.hint,
-        });
-      } else {
-        console.log("✅ 데이터 저장 성공!");
-        isSaved.current = true;
-      }
-    };
-    saveData();
-  }, [finalResult]); // 의존성 배열 추가
+  //     if (error) {
+  //       console.error("❌ 에러 상세:", {
+  //         message: error.message,
+  //         code: error.code,
+  //         details: error.details,
+  //         hint: error.hint,
+  //       });
+  //     } else {
+  //       console.log("✅ 데이터 저장 성공!");
+  //       isSaved.current = true;
+  //     }
+  //   };
+  //   saveData();
+  // }, [finalResult]); // 의존성 배열 추가
 
   const [loading, setLoading] = useState(false);
 
